@@ -1,0 +1,13 @@
+{
+  "batch": "9999-99",
+  "label": "TEST — admin CMS publish verification (safe to delete)",
+  "records": [
+    {
+      "id": "9999-99-01",
+      "batch": "9999-99",
+      "sourceFormat": "table-kv",
+      "name": "Test Record",
+      "questions": {}
+    }
+  ]
+}
