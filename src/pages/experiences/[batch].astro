@@ -27,10 +27,10 @@ const avgWritten = numericAvg(writtenScores);
 <BaseLayout title={`${label} · Interview Experiences`}>
   <BatchSwitcher batches={batches} activeBatch={current.data.batch} />
 
-  <header class="border-b border-ink-100 bg-white">
-    <div class="mx-auto max-w-6xl px-5 py-8">
-      <h1 class="font-display text-3xl font-semibold text-ink-900">{label}</h1>
-      <p class="mt-2 text-sm text-ink-500">
+  <header class="border-b border-noir-700 bg-noir-900">
+    <div class="mx-auto max-w-6xl px-5 py-10">
+      <h1 class="font-display text-4xl font-semibold text-noir-50">{label}<span class="text-brand-500">.</span></h1>
+      <p class="mt-2 text-sm text-noir-200">
         {records.length} interview experience{records.length === 1 ? "" : "s"}
         {avgWritten && <> · avg. written score {avgWritten}</>}
       </p>
@@ -42,7 +42,7 @@ const avgWritten = numericAvg(writtenScores);
             id="search"
             type="search"
             placeholder="Search by name, college, or stream…"
-            class="w-full rounded-full border border-ink-200 bg-paper px-4 py-2 text-sm text-ink-800 placeholder:text-ink-500/70 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
+            class="w-full rounded-full border border-noir-700 bg-noir-800/60 px-4 py-2 text-sm text-noir-50 placeholder:text-noir-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-600/30"
           />
         </div>
       )}

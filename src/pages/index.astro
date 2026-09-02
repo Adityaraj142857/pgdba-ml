@@ -10,13 +10,14 @@ const latest = await getLatestBatch();
 
 <BaseLayout title="About">
   <!-- Hero -->
-  <section class="relative overflow-hidden border-b border-ink-100 bg-gradient-to-b from-brand-50 via-paper to-paper">
+  <section class="relative overflow-hidden bg-gradient-to-b from-noir-900 via-noir-900 to-noir-950">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(171,55,34,0.18),_transparent_60%)]"></div>
     <div class="relative mx-auto max-w-4xl px-5 py-20 text-center sm:py-28">
       <img src={withBase("/images/logo.png")} alt="PGDBA logo" class="mx-auto mb-6 h-20 w-20" width="80" height="80" />
-      <h1 class="font-display text-4xl font-semibold tracking-tight text-ink-900 sm:text-5xl">
-        Post Graduate Diploma in <span class="text-brand-700">Business Analytics</span>
+      <h1 class="font-display text-5xl font-semibold tracking-tight text-noir-50 sm:text-6xl">
+        Post Graduate Diploma in <span class="text-brand-400">Business Analytics</span><span class="text-brand-500">.</span>
       </h1>
-      <p class="mx-auto mt-5 max-w-2xl text-balance text-lg text-ink-700">
+      <p class="mx-auto mt-5 max-w-2xl text-balance text-lg text-noir-200">
         A joint program of the Indian Statistical Institute Kolkata, IIM Calcutta, and IIT
         Kharagpur — training analytics leaders through a rigorous, data-driven curriculum.
       </p>
@@ -29,7 +30,7 @@ const latest = await getLatestBatch();
         </a>
         <a
           href={withBase(`/experiences/${latest.data.batch}/`)}
-          class="rounded-full border border-ink-200 bg-white px-6 py-3 text-sm font-semibold text-ink-800 transition-colors hover:border-brand-300 hover:text-brand-700"
+          class="rounded-full border border-noir-700 bg-noir-800/60 px-6 py-3 text-sm font-semibold text-noir-50 transition-colors hover:border-brand-400 hover:text-brand-300"
         >
           Latest batch: {latest.data.batch}
         </a>
@@ -38,7 +39,7 @@ const latest = await getLatestBatch();
   </section>
 
   <!-- Institutes banner -->
-  <section class="border-b border-ink-100 bg-ink-900">
+  <section class="border-b border-noir-700 bg-noir-950">
     <img
       src={withBase("/images/3_institute_logo.jpg")}
       alt="Indian Statistical Institute Kolkata, Indian Institute of Management Calcutta, and Indian Institute of Technology Kharagpur"
@@ -48,7 +49,7 @@ const latest = await getLatestBatch();
 
   <!-- What is PGDBA -->
   <section class="mx-auto max-w-4xl px-5 py-16">
-    <h2 class="font-display text-2xl font-semibold text-ink-900">What is PGDBA?</h2>
+    <h2 class="font-display text-3xl font-semibold text-ink-900">What is PGDBA<span class="text-brand-600">.</span></h2>
     <div class="prose prose-ink mt-4 max-w-none text-ink-700">
       <!--
         TODO: replace with official program copy. Placeholder drafted from public knowledge of
@@ -86,9 +87,9 @@ const latest = await getLatestBatch();
   </section>
 
   <!-- Why this site -->
-  <section class="border-t border-ink-100 bg-white">
-    <div class="mx-auto max-w-4xl px-5 py-16">
-      <h2 class="font-display text-2xl font-semibold text-ink-900">Why this site exists</h2>
+  <section class="bg-noir-950 px-5 py-16">
+    <div class="mx-auto max-w-4xl rounded-3xl bg-white p-8 shadow-sm sm:p-12">
+      <h2 class="font-display text-3xl font-semibold text-ink-900">Why this site exists<span class="text-brand-600">.</span></h2>
       <p class="mt-4 text-ink-700">
         This is an alumni-run, free resource for PGDBA aspirants — a rebuild of interview
         experiences originally collected on the program's old WordPress site. Every batch from

@@ -22,7 +22,7 @@ const batchSummaries = batches.map((b) => ({
     </header>
 
     <!-- Step 1: Connect -->
-    <div id="step-connect" class="rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
+    <div id="step-connect" class="rounded-3xl border border-ink-100 bg-white p-6 shadow-sm">
       <h2 class="font-display text-xl font-semibold text-ink-900">1. Connect to GitHub</h2>
       <p class="mt-2 text-sm text-ink-600">
         Use a <strong>fine-grained personal access token</strong> scoped to only this
@@ -63,7 +63,7 @@ const batchSummaries = batches.map((b) => ({
     </div>
 
     <!-- Step 2: Choose batch + upload -->
-    <div id="step-upload" hidden class="mt-6 rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
+    <div id="step-upload" hidden class="mt-6 rounded-3xl border border-ink-100 bg-white p-6 shadow-sm">
       <div class="flex items-center justify-between">
         <h2 class="font-display text-xl font-semibold text-ink-900">2. Choose batch &amp; upload</h2>
         <div class="flex items-center gap-3 text-xs text-ink-500">
@@ -84,13 +84,18 @@ const batchSummaries = batches.map((b) => ({
               <option value={b.batch}>{b.label} ({b.recordCount} profiles)</option>
             ))}
           </select>
-          <input
-            id="new-batch-input"
-            type="text"
-            placeholder="e.g. 2026-28"
-            hidden
-            class="mt-2 w-full rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
-          />
+          <div id="new-batch-picker" class="mt-2 flex items-center gap-2">
+            <select
+              id="new-batch-year-select"
+              class="w-full rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
+            ></select>
+            <span class="text-sm text-ink-400">→</span>
+            <span id="new-batch-preview" class="whitespace-nowrap rounded-lg bg-ink-100 px-3 py-2 text-sm font-semibold text-ink-800"></span>
+          </div>
+          <p class="mt-1 text-xs text-ink-500">
+            Pick the year this batch joined PGDBA — the batch code is generated automatically
+            (the program is 2 years).
+          </p>
         </div>
         <div>
           <label for="file-input" class="text-xs font-medium uppercase tracking-wide text-ink-500">Excel file (.xlsx)</label>
@@ -106,7 +111,7 @@ const batchSummaries = batches.map((b) => ({
     </div>
 
     <!-- Step 3: Column mapping -->
-    <div id="step-mapping" hidden class="mt-6 rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
+    <div id="step-mapping" hidden class="mt-6 rounded-3xl border border-ink-100 bg-white p-6 shadow-sm">
       <h2 class="font-display text-xl font-semibold text-ink-900">3. Map columns</h2>
       <p class="mt-2 text-sm text-ink-600">
         Headers drift a little year to year, so confirm (or fix) how each Excel column maps
@@ -122,7 +127,7 @@ const batchSummaries = batches.map((b) => ({
     </div>
 
     <!-- Step 4: Preview -->
-    <div id="step-preview" hidden class="mt-6 rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
+    <div id="step-preview" hidden class="mt-6 rounded-3xl border border-ink-100 bg-white p-6 shadow-sm">
       <h2 class="font-display text-xl font-semibold text-ink-900">4. Preview &amp; publish</h2>
       <p id="preview-summary" class="mt-2 text-sm text-ink-600"></p>
       <div id="preview-errors" class="mt-3 space-y-1"></div>
@@ -142,7 +147,7 @@ const batchSummaries = batches.map((b) => ({
     </div>
 
     <!-- Step 5: Done -->
-    <div id="step-done" hidden class="mt-6 rounded-2xl border border-brand-200 bg-brand-50 p-6 text-center shadow-sm">
+    <div id="step-done" hidden class="mt-6 rounded-3xl border border-brand-200 bg-brand-50 p-6 text-center shadow-sm">
       <h2 class="font-display text-xl font-semibold text-brand-800">Pull request opened 🎉</h2>
       <p class="mt-2 text-sm text-ink-700">
         Nothing is live yet — review and merge the PR on GitHub to publish this batch.
@@ -218,7 +223,9 @@ const batchSummaries = batches.map((b) => ({
   const logoutBtn = $<HTMLButtonElement>("logout-btn");
 
   const batchSelect = $<HTMLSelectElement>("batch-select");
-  const newBatchInput = $<HTMLInputElement>("new-batch-input");
+  const newBatchPicker = $("new-batch-picker");
+  const newBatchYearSelect = $<HTMLSelectElement>("new-batch-year-select");
+  const newBatchPreview = $("new-batch-preview");
   const fileInput = $<HTMLInputElement>("file-input");
   const uploadError = $("upload-error");
 
@@ -320,19 +327,63 @@ const batchSummaries = batches.map((b) => ({
   // ---------------------------------------------------------------------
   // Step 2: batch + upload
   // ---------------------------------------------------------------------
+  const existingBatchCodes = new Set(existingBatches.map((b) => b.batch));
+
+  /** PGDBA is a 2-year program: the batch someone joins in `year` is labelled
+   *  "year-(year+2, last two digits)", matching every existing batch file. */
+  function batchCodeForYear(year: number): string {
+    const endYY = String((year + 2) % 100).padStart(2, "0");
+    return `${year}-${endYY}`;
+  }
+
+  function populateNewBatchYearSelect() {
+    const currentYear = new Date().getFullYear();
+    const startYear = currentYear - 1;
+    const endYear = currentYear + 5;
+    newBatchYearSelect.innerHTML = "";
+    let defaultYear: number | null = null;
+    for (let year = startYear; year <= endYear; year++) {
+      const code = batchCodeForYear(year);
+      const alreadyExists = existingBatchCodes.has(code);
+      const option = document.createElement("option");
+      option.value = String(year);
+      option.textContent = alreadyExists ? `${year} (${code} — already published)` : String(year);
+      newBatchYearSelect.appendChild(option);
+      if (!alreadyExists && defaultYear === null) defaultYear = year;
+    }
+    newBatchYearSelect.value = String(defaultYear ?? currentYear);
+    updateNewBatchPreview();
+  }
+
+  function updateNewBatchPreview() {
+    const year = Number(newBatchYearSelect.value);
+    newBatchPreview.textContent = batchCodeForYear(year);
+  }
+
+  newBatchYearSelect.addEventListener("change", updateNewBatchPreview);
+  populateNewBatchYearSelect();
+
   batchSelect.addEventListener("change", () => {
-    newBatchInput.hidden = batchSelect.value !== "__new__";
+    newBatchPicker.hidden = batchSelect.value !== "__new__";
   });
+  newBatchPicker.hidden = batchSelect.value !== "__new__";
 
   fileInput.addEventListener("change", async () => {
     hideError(uploadError);
     const file = fileInput.files?.[0];
     if (!file) return;
 
-    selectedBatch = batchSelect.value === "__new__" ? newBatchInput.value.trim() : batchSelect.value;
-    if (!/^\d{4}-\d{2}$/.test(selectedBatch)) {
-      showError(uploadError, 'Batch must look like "2026-28".');
-      return;
+    if (batchSelect.value === "__new__") {
+      selectedBatch = batchCodeForYear(Number(newBatchYearSelect.value));
+      if (existingBatchCodes.has(selectedBatch)) {
+        showError(
+          uploadError,
+          `Batch ${selectedBatch} is already published — pick it from the dropdown above to update it instead of adding it as new.`
+        );
+        return;
+      }
+    } else {
+      selectedBatch = batchSelect.value;
     }
 
     try {
@@ -469,7 +520,7 @@ const batchSummaries = batches.map((b) => ({
     ].join("");
     const quickFacts = [r.ugCollege, r.gradStream, r.workExBackground].filter(Boolean).join(" · ");
     return `
-      <article class="rounded-2xl border border-ink-100 bg-white p-5 shadow-sm">
+      <article class="rounded-3xl border border-ink-100 bg-white p-5 shadow-sm">
         <div class="flex flex-wrap items-start justify-between gap-2">
           <div>
             <h3 class="font-display text-base font-semibold text-ink-900">${escapeHtml(r.name)}</h3>

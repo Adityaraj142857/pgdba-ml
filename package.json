@@ -24,7 +24,9 @@
     "esbuild": true
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "cheerio": "^1.2.0",
-    "tsx": "^4.23.13"
+    "tsx": "^4.23.13",
+    "typescript": "^6.0.3"
   }
 }

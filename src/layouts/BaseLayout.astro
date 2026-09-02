@@ -17,6 +17,20 @@ const ogImage = new URL(withBase("/images/3_institute_logo.jpg"), Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      // Runs before first paint so the page never flashes the wrong theme.
+      (function () {
+        try {
+          const stored = localStorage.getItem("pgdba-theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (stored === "dark" || (!stored && prefersDark)) {
+            document.documentElement.classList.add("dark");
+          }
+        } catch {
+          // localStorage unavailable (e.g. private browsing) — default to light.
+        }
+      })();
+    </script>
     <link rel="icon" type="image/png" href={withBase("/images/logo.png")} />
     <title>{title} · PGDBA</title>
     <meta name="description" content={description} />

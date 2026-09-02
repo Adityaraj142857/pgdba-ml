@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SocialIcon from "../../components/SocialIcon.astro";
+
+const socials = [
+  {
+    name: "LinkedIn",
+    handle: "linkedin.com/in/pgdba",
+    url: "https://www.linkedin.com/in/pgdba/",
+    description:
+      "Placement updates, alumni achievements, and program announcements — the primary channel for anything official.",
+    cta: "Follow on LinkedIn",
+    icon: "linkedin",
+  },
+  {
+    name: "Instagram",
+    handle: "@pgdba_",
+    url: "https://www.instagram.com/pgdba_?igsi=cDR1Y2Q0ZzNnMWZx&utm_source=qr",
+    description:
+      "Campus life across ISI Kolkata, IIM Calcutta, and IIT Kharagpur, told through the current batches.",
+    cta: "Follow on Instagram",
+    icon: "instagram",
+  },
+  {
+    name: "YouTube",
+    handle: "@pgdbapublicrelations",
+    url: "https://www.youtube.com/@pgdbapublicrelations",
+    description:
+      "Info sessions, alumni interviews, and a closer look at what the program actually feels like.",
+    cta: "Subscribe on YouTube",
+    icon: "youtube",
+  },
+] as const;
+---
+
+<BaseLayout title="Connect" description="Follow PGDBA's official LinkedIn, Instagram, and YouTube channels for updates, campus life, and info sessions.">
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-noir-900 via-noir-900 to-noir-950">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(171,55,34,0.18),_transparent_60%)]"></div>
+    <div class="relative mx-auto max-w-3xl px-5 py-20 text-center sm:py-24">
+      <h1 class="font-display text-5xl font-semibold tracking-tight text-noir-50 sm:text-6xl">
+        Stay connected<span class="text-brand-500">.</span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-xl text-balance text-lg text-noir-200">
+        This site archives interview experiences. For everything else — announcements, campus
+        life, placements — follow PGDBA's official channels below.
+      </p>
+    </div>
+  </section>
+
+  <!-- Social cards -->
+  <section class="bg-noir-950 px-5 py-16">
+    <div class="mx-auto flex max-w-4xl flex-col gap-6">
+      {socials.map((s) => (
+        <div class="rounded-3xl bg-white p-8 shadow-sm sm:p-10">
+          <div class="flex flex-wrap items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
+                <SocialIcon name={s.icon} />
+              </span>
+              <div>
+                <h2 class="font-display text-2xl font-semibold text-ink-900">
+                  {s.name}<span class="text-brand-600">.</span>
+                </h2>
+                <p class="mt-1 text-sm font-medium text-ink-500">{s.handle}</p>
+                <p class="mt-3 max-w-md text-ink-700">{s.description}</p>
+              </div>
+            </div>
+
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex shrink-0 items-center gap-2 rounded-full bg-noir-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-noir-800"
+            >
+              {s.cta}
+              <SocialIcon name={s.icon} class="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

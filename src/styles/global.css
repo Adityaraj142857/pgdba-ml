@@ -4,21 +4,35 @@
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand-50: #eefaf3;
-  --color-brand-100: #d3f1e0;
-  --color-brand-200: #a6e3c1;
-  --color-brand-300: #6fce9c;
-  --color-brand-400: #3fb27b;
-  --color-brand-500: #1f9563;
-  --color-brand-600: #147a51;
-  --color-brand-700: #106142;
-  --color-brand-800: #0f4d37;
-  --color-brand-900: #0d3f2e;
+  --color-brand-50: #fdf1ef;
+  --color-brand-100: #fbe0db;
+  --color-brand-200: #f6c0b6;
+  --color-brand-300: #ec9484;
+  --color-brand-400: #dd6852;
+  --color-brand-500: #c8492f;
+  --color-brand-600: #ab3722;
+  --color-brand-700: #8a2c1c;
+  --color-brand-800: #6f2519;
+  --color-brand-900: #5c2015;
+
+  /* Fixed dark "chrome" scale — navbar, footer, and hero bands render in these
+     regardless of the light/dark toggle (an always-dark frame around the
+     theme-reactive ink-* content panels), matching the reference site's layout. */
+  --color-noir-950: #0e1114;
+  --color-noir-900: #14181d;
+  --color-noir-800: #1e242b;
+  --color-noir-700: #2b323b;
+  --color-noir-400: #7c8794;
+  --color-noir-200: #c7ced6;
+  --color-noir-50: #f7f8f9;
 
   --color-ink-50: #f6f7f8;
   --color-ink-100: #eceef1;
+  --color-ink-200: #dde1e6;
   --color-ink-300: #b6bdc7;
+  --color-ink-400: #8b96a2;
   --color-ink-500: #64707d;
+  --color-ink-600: #4b5763;
   --color-ink-700: #37414d;
   --color-ink-800: #232b34;
   --color-ink-900: #171c22;
@@ -29,14 +43,50 @@
   --color-paper: #fbfaf7;
 }
 
+/* Dark theme: overrides the same design tokens rather than adding `dark:` variants
+   everywhere, since every component already reads color exclusively through these
+   custom properties. Applied via a `.dark` class on <html>, toggled in Navbar.astro
+   and set as early as possible in BaseLayout.astro to avoid a flash of the wrong theme. */
+:root.dark {
+  --color-brand-50: #2a140f;
+  --color-brand-100: #3a1b14;
+  --color-brand-200: #4d2419;
+  --color-brand-300: #7a3527;
+  --color-brand-700: #f0806a;
+  --color-brand-800: #f5a08f;
+
+  --color-ink-50: #212832;
+  --color-ink-100: #2a323d;
+  --color-ink-200: #333d49;
+  --color-ink-300: #48525f;
+  --color-ink-400: #6b7684;
+  --color-ink-500: #98a3b1;
+  --color-ink-600: #aeb8c4;
+  --color-ink-700: #c3cad3;
+  --color-ink-800: #e2e6ea;
+  --color-ink-900: #f7f9fa;
+
+  --color-tint-blue: #1c2c3a;
+  --color-tint-blue-deep: #223c4e;
+
+  --color-paper: #12161b;
+  --color-white: #1b2129;
+}
+
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
   background-color: var(--color-paper);
   color: var(--color-ink-800);
   font-family: var(--font-sans);
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 h1, h2, h3, h4 {
