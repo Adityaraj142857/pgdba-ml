@@ -1,15 +1,535 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllBatchesSorted } from "../../lib/batches";
+
+const batches = await getAllBatchesSorted();
+const batchSummaries = batches.map((b) => ({
+  batch: b.data.batch,
+  label: b.data.label,
+  recordCount: b.data.records.length,
+}));
 ---
 
 <BaseLayout title="Committee Admin">
-  <section class="mx-auto max-w-2xl px-5 py-20 text-center">
-    <h1 class="font-display text-2xl font-semibold text-ink-900">Committee Admin</h1>
-    <p class="mt-4 text-ink-600">
-      The Excel upload → publish tool isn't wired up yet — it's next on the build plan (see
-      <code class="rounded bg-ink-100 px-1.5 py-0.5 text-sm">.plan/04-admin-cms.md</code>).
-      Until then, new batches can be added by running the migration script or editing the
-      JSON files under <code class="rounded bg-ink-100 px-1.5 py-0.5 text-sm">src/data/batches/</code> directly.
-    </p>
+  <section class="mx-auto max-w-4xl px-5 py-12">
+    <header class="mb-8">
+      <h1 class="font-display text-3xl font-semibold text-ink-900">Committee Admin</h1>
+      <p class="mt-2 text-ink-600">
+        Upload a batch's interview-experience Excel export, review how it will look, and
+        publish it as a pull request — no server, no database, just this page talking directly
+        to GitHub.
+      </p>
+    </header>
+
+    <!-- Step 1: Connect -->
+    <div id="step-connect" class="rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
+      <h2 class="font-display text-xl font-semibold text-ink-900">1. Connect to GitHub</h2>
+      <p class="mt-2 text-sm text-ink-600">
+        Use a <strong>fine-grained personal access token</strong> scoped to only this
+        repository, with <strong>Contents: Read and write</strong> and
+        <strong>Pull requests: Read and write</strong> permissions, and a short expiry. It's
+        stored only in this browser (<code class="rounded bg-ink-100 px-1 py-0.5 text-xs">localStorage</code>)
+        and sent only to <code class="rounded bg-ink-100 px-1 py-0.5 text-xs">api.github.com</code>.
+      </p>
+
+      <div class="mt-5 grid gap-4 sm:grid-cols-2">
+        <div>
+          <label for="repo-input" class="text-xs font-medium uppercase tracking-wide text-ink-500">Repository (owner/name)</label>
+          <input
+            id="repo-input"
+            type="text"
+            placeholder="yourname/pgdba-website"
+            class="mt-1 w-full rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          />
+        </div>
+        <div>
+          <label for="token-input" class="text-xs font-medium uppercase tracking-wide text-ink-500">Personal access token</label>
+          <input
+            id="token-input"
+            type="password"
+            placeholder="github_pat_…"
+            class="mt-1 w-full rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          />
+        </div>
+      </div>
+
+      <button
+        id="connect-btn"
+        class="mt-5 rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        Connect
+      </button>
+      <p id="connect-error" hidden class="mt-3 text-sm font-medium text-red-600"></p>
+    </div>
+
+    <!-- Step 2: Choose batch + upload -->
+    <div id="step-upload" hidden class="mt-6 rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
+      <div class="flex items-center justify-between">
+        <h2 class="font-display text-xl font-semibold text-ink-900">2. Choose batch &amp; upload</h2>
+        <div class="flex items-center gap-3 text-xs text-ink-500">
+          <span>Connected as <span id="connected-repo" class="font-semibold text-ink-800"></span></span>
+          <button id="logout-btn" class="font-medium text-brand-700 hover:text-brand-800">Log out</button>
+        </div>
+      </div>
+
+      <div class="mt-5 grid gap-4 sm:grid-cols-2">
+        <div>
+          <label for="batch-select" class="text-xs font-medium uppercase tracking-wide text-ink-500">Batch</label>
+          <select
+            id="batch-select"
+            class="mt-1 w-full rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          >
+            <option value="__new__">+ New batch…</option>
+            {batchSummaries.slice().reverse().map((b) => (
+              <option value={b.batch}>{b.label} ({b.recordCount} profiles)</option>
+            ))}
+          </select>
+          <input
+            id="new-batch-input"
+            type="text"
+            placeholder="e.g. 2026-28"
+            hidden
+            class="mt-2 w-full rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          />
+        </div>
+        <div>
+          <label for="file-input" class="text-xs font-medium uppercase tracking-wide text-ink-500">Excel file (.xlsx)</label>
+          <input
+            id="file-input"
+            type="file"
+            accept=".xlsx"
+            class="mt-1 w-full rounded-lg border border-ink-200 px-3 py-1.5 text-sm file:mr-3 file:rounded-full file:border-0 file:bg-brand-50 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-brand-700"
+          />
+        </div>
+      </div>
+      <p id="upload-error" hidden class="mt-3 text-sm font-medium text-red-600"></p>
+    </div>
+
+    <!-- Step 3: Column mapping -->
+    <div id="step-mapping" hidden class="mt-6 rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
+      <h2 class="font-display text-xl font-semibold text-ink-900">3. Map columns</h2>
+      <p class="mt-2 text-sm text-ink-600">
+        Headers drift a little year to year, so confirm (or fix) how each Excel column maps
+        onto the site's fields before continuing.
+      </p>
+      <div id="mapping-rows" class="mt-5 divide-y divide-ink-100"></div>
+      <button
+        id="mapping-continue-btn"
+        class="mt-5 rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
+      >
+        Continue to preview
+      </button>
+    </div>
+
+    <!-- Step 4: Preview -->
+    <div id="step-preview" hidden class="mt-6 rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
+      <h2 class="font-display text-xl font-semibold text-ink-900">4. Preview &amp; publish</h2>
+      <p id="preview-summary" class="mt-2 text-sm text-ink-600"></p>
+      <div id="preview-errors" class="mt-3 space-y-1"></div>
+
+      <div id="preview-cards" class="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2"></div>
+
+      <div class="mt-6 flex items-center gap-4">
+        <button
+          id="publish-btn"
+          class="rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Publish as pull request
+        </button>
+        <span id="publish-status" class="text-sm text-ink-600"></span>
+      </div>
+      <p id="publish-error" hidden class="mt-3 text-sm font-medium text-red-600"></p>
+    </div>
+
+    <!-- Step 5: Done -->
+    <div id="step-done" hidden class="mt-6 rounded-2xl border border-brand-200 bg-brand-50 p-6 text-center shadow-sm">
+      <h2 class="font-display text-xl font-semibold text-brand-800">Pull request opened 🎉</h2>
+      <p class="mt-2 text-sm text-ink-700">
+        Nothing is live yet — review and merge the PR on GitHub to publish this batch.
+      </p>
+      <a id="pr-link" href="#" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">
+        View pull request ↗
+      </a>
+    </div>
   </section>
 </BaseLayout>
+
+<script id="existing-batches" type="application/json" set:html={JSON.stringify(batchSummaries)} />
+
+<script>
+  import * as XLSX from "xlsx";
+  import { batchSchema, interviewRecordSchema, type InterviewRecord, type Batch } from "../../lib/schema";
+  import { resolveSchemaField, guessSchemaField } from "../../lib/header-aliases";
+  import { buildRecordFromRow, type FieldMapping } from "../../lib/record-fields";
+  import * as gh from "../../lib/github-api";
+
+  const FIELD_OPTIONS: Array<{ value: string; label: string }> = [
+    { value: "", label: "— Ignore this column —" },
+    { value: "name", label: "Name" },
+    { value: "rollNumber", label: "Roll number" },
+    { value: "linkUrl", label: "LinkedIn / profile URL" },
+    { value: "ugCollege", label: "Undergraduate college" },
+    { value: "ugBackground", label: "Undergraduate background" },
+    { value: "gradYear", label: "Graduation year" },
+    { value: "gradStream", label: "Graduation stream" },
+    { value: "pgCollege", label: "Post-graduation college" },
+    { value: "pgStream", label: "Post-graduation stream" },
+    { value: "pgYear", label: "Post-graduation year" },
+    { value: "workExMonths", label: "Work experience (duration)" },
+    { value: "workExBackground", label: "Work experience background" },
+    { value: "organizations", label: "Organizations" },
+    { value: "writtenScore", label: "Written test score" },
+    { value: "preInterviewScore", label: "Pre-interview score" },
+    { value: "resourcesWritten", label: "Resources — written exam" },
+    { value: "resourcesInterview", label: "Resources — interview" },
+    { value: "priorCoding", label: "Prior coding experience" },
+    { value: "alternatePrograms", label: "Alternate programs" },
+    { value: "offers", label: "Offers received" },
+    { value: "questions.general", label: "Questions — general / profile" },
+    { value: "questions.mathStats", label: "Questions — maths & stats" },
+    { value: "questions.coding", label: "Questions — coding / ML" },
+    { value: "questions.gk", label: "Questions — GK / current affairs" },
+    { value: "questions.logical", label: "Questions — logical / puzzles" },
+    { value: "interviewDifficulty", label: "Interview difficulty (1-5)" },
+    { value: "writtenDifficulty", label: "Written exam difficulty (1-5)" },
+    { value: "tips", label: "Tips for aspirants" },
+  ];
+
+  type ExistingBatchSummary = { batch: string; label: string; recordCount: number };
+  const existingBatches: ExistingBatchSummary[] = JSON.parse(
+    document.getElementById("existing-batches")!.textContent || "[]"
+  );
+
+  // ---------------------------------------------------------------------
+  // DOM refs
+  // ---------------------------------------------------------------------
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const stepConnect = $("step-connect");
+  const stepUpload = $("step-upload");
+  const stepMapping = $("step-mapping");
+  const stepPreview = $("step-preview");
+  const stepDone = $("step-done");
+
+  const repoInput = $<HTMLInputElement>("repo-input");
+  const tokenInput = $<HTMLInputElement>("token-input");
+  const connectBtn = $<HTMLButtonElement>("connect-btn");
+  const connectError = $("connect-error");
+  const connectedRepoLabel = $("connected-repo");
+  const logoutBtn = $<HTMLButtonElement>("logout-btn");
+
+  const batchSelect = $<HTMLSelectElement>("batch-select");
+  const newBatchInput = $<HTMLInputElement>("new-batch-input");
+  const fileInput = $<HTMLInputElement>("file-input");
+  const uploadError = $("upload-error");
+
+  const mappingRows = $("mapping-rows");
+  const mappingContinueBtn = $<HTMLButtonElement>("mapping-continue-btn");
+
+  const previewSummary = $("preview-summary");
+  const previewErrors = $("preview-errors");
+  const previewCards = $("preview-cards");
+  const publishBtn = $<HTMLButtonElement>("publish-btn");
+  const publishStatus = $("publish-status");
+  const publishError = $("publish-error");
+
+  const prLink = $<HTMLAnchorElement>("pr-link");
+
+  // ---------------------------------------------------------------------
+  // State
+  // ---------------------------------------------------------------------
+  let config: gh.GitHubConfig | null = null;
+  let defaultBranch = "main";
+  let selectedBatch = "";
+  let existingBatchFile: { data: Batch; sha: string } | null = null;
+
+  let headers: string[] = [];
+  let dataRows: unknown[][] = [];
+  let mapping: FieldMapping = {};
+  let validRecords: InterviewRecord[] = [];
+  let invalidCount = 0;
+
+  // ---------------------------------------------------------------------
+  // Step 1: connect
+  // ---------------------------------------------------------------------
+  function loadStoredConfig() {
+    const raw = localStorage.getItem("pgdba-admin-config");
+    if (!raw) return;
+    try {
+      const parsed = JSON.parse(raw) as gh.GitHubConfig;
+      repoInput.value = `${parsed.owner}/${parsed.repo}`;
+      tokenInput.value = parsed.token;
+    } catch {
+      // ignore corrupt storage
+    }
+  }
+
+  function showError(el: HTMLElement, message: string) {
+    el.textContent = message;
+    el.hidden = false;
+  }
+  function hideError(el: HTMLElement) {
+    el.hidden = true;
+  }
+
+  connectBtn.addEventListener("click", async () => {
+    hideError(connectError);
+    const repoValue = repoInput.value.trim();
+    const token = tokenInput.value.trim();
+    const [owner, repo] = repoValue.split("/").map((s) => s.trim());
+    if (!owner || !repo || !token) {
+      showError(connectError, "Enter both the repository (owner/name) and a token.");
+      return;
+    }
+    connectBtn.disabled = true;
+    connectBtn.textContent = "Connecting…";
+    try {
+      const testConfig = { owner, repo, token };
+      const { defaultBranch: branch } = await gh.verifyAccess(testConfig);
+      config = testConfig;
+      defaultBranch = branch;
+      localStorage.setItem("pgdba-admin-config", JSON.stringify(testConfig));
+      connectedRepoLabel.textContent = `${owner}/${repo}`;
+      stepUpload.hidden = false;
+      stepUpload.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (err) {
+      if (err instanceof gh.GitHubApiError && err.status === 401) {
+        showError(connectError, "That token was rejected — check it's valid and hasn't expired.");
+      } else if (err instanceof gh.GitHubApiError && err.status === 404) {
+        showError(connectError, "Repository not found (or this token can't access it).");
+      } else {
+        showError(connectError, `Couldn't connect: ${(err as Error).message}`);
+      }
+    } finally {
+      connectBtn.disabled = false;
+      connectBtn.textContent = "Connect";
+    }
+  });
+
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("pgdba-admin-config");
+    config = null;
+    tokenInput.value = "";
+    stepUpload.hidden = true;
+    stepMapping.hidden = true;
+    stepPreview.hidden = true;
+    stepDone.hidden = true;
+  });
+
+  loadStoredConfig();
+
+  // ---------------------------------------------------------------------
+  // Step 2: batch + upload
+  // ---------------------------------------------------------------------
+  batchSelect.addEventListener("change", () => {
+    newBatchInput.hidden = batchSelect.value !== "__new__";
+  });
+
+  fileInput.addEventListener("change", async () => {
+    hideError(uploadError);
+    const file = fileInput.files?.[0];
+    if (!file) return;
+
+    selectedBatch = batchSelect.value === "__new__" ? newBatchInput.value.trim() : batchSelect.value;
+    if (!/^\d{4}-\d{2}$/.test(selectedBatch)) {
+      showError(uploadError, 'Batch must look like "2026-28".');
+      return;
+    }
+
+    try {
+      const buf = await file.arrayBuffer();
+      const wb = XLSX.read(buf, { type: "array", cellDates: true });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json<unknown[]>(ws, { header: 1, defval: "" });
+      if (rows.length < 2) throw new Error("This sheet has no data rows.");
+
+      headers = (rows[0] as unknown[]).map((h) => String(h ?? "").trim());
+      dataRows = rows.slice(1).filter((r) => (r as unknown[]).some((c) => String(c ?? "").trim() !== ""));
+
+      // Fetch the existing published version of this batch (if any) for the diff summary.
+      existingBatchFile = config
+        ? await gh.getJsonFile<Batch>(config, `src/data/batches/${selectedBatch}.json`, defaultBranch)
+        : null;
+
+      buildMappingUI();
+      stepMapping.hidden = false;
+      stepPreview.hidden = true;
+      stepDone.hidden = true;
+      stepMapping.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (err) {
+      showError(uploadError, `Couldn't read that file: ${(err as Error).message}`);
+    }
+  });
+
+  // ---------------------------------------------------------------------
+  // Step 3: column mapping
+  // ---------------------------------------------------------------------
+  function buildMappingUI() {
+    mapping = {};
+    mappingRows.innerHTML = "";
+    headers.forEach((header, colIndex) => {
+      const guessed = resolveSchemaField(header) ?? guessSchemaField(header)?.field ?? "";
+      mapping[colIndex] = guessed || null;
+
+      const row = document.createElement("div");
+      row.className = "flex flex-wrap items-center justify-between gap-3 py-3";
+      row.innerHTML = `
+        <div class="min-w-0">
+          <p class="truncate text-sm font-medium text-ink-800" title="${escapeHtml(header)}">${escapeHtml(header) || "(blank column)"}</p>
+        </div>
+      `;
+      const select = document.createElement("select");
+      select.className = "rounded-lg border border-ink-200 px-3 py-1.5 text-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200";
+      select.dataset.col = String(colIndex);
+      for (const opt of FIELD_OPTIONS) {
+        const optionEl = document.createElement("option");
+        optionEl.value = opt.value;
+        optionEl.textContent = opt.label;
+        if (opt.value === guessed) optionEl.selected = true;
+        select.appendChild(optionEl);
+      }
+      select.addEventListener("change", () => {
+        mapping[colIndex] = select.value || null;
+      });
+      row.appendChild(select);
+      mappingRows.appendChild(row);
+    });
+  }
+
+  function escapeHtml(s: string): string {
+    return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
+  }
+
+  mappingContinueBtn.addEventListener("click", () => {
+    buildPreview();
+    stepPreview.hidden = false;
+    stepPreview.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  // ---------------------------------------------------------------------
+  // Step 4: preview
+  // ---------------------------------------------------------------------
+  function cellForField(field: string | null, cell: unknown): unknown {
+    if (cell instanceof Date) {
+      if (field === "gradYear" || field === "pgYear") return String(cell.getFullYear());
+      return cell.toISOString().slice(0, 10);
+    }
+    return cell;
+  }
+
+  function buildPreview() {
+    validRecords = [];
+    invalidCount = 0;
+    previewErrors.innerHTML = "";
+
+    dataRows.forEach((row, i) => {
+      const transformed = (row as unknown[]).map((cell, colIndex) => cellForField(mapping[colIndex], cell));
+      const rec = buildRecordFromRow(`${selectedBatch}-${String(i + 1).padStart(2, "0")}`, selectedBatch, "table-kv", mapping, transformed);
+      const parsed = interviewRecordSchema.safeParse(rec);
+      if (parsed.success) {
+        validRecords.push(parsed.data);
+      } else {
+        invalidCount += 1;
+        const msg = document.createElement("p");
+        msg.className = "text-sm text-red-600";
+        msg.textContent = `Row ${i + 2}: ${parsed.error.issues.map((iss) => iss.message).join("; ")} — skipped.`;
+        previewErrors.appendChild(msg);
+      }
+    });
+
+    // Diff summary against the existing published batch, if any.
+    let diffLine = "";
+    if (existingBatchFile) {
+      const oldByName = new Map(existingBatchFile.data.records.map((r) => [r.name, r]));
+      const newByName = new Map(validRecords.map((r) => [r.name, r]));
+      let added = 0, changed = 0, unchanged = 0;
+      for (const [name, rec] of newByName) {
+        const old = oldByName.get(name);
+        if (!old) added += 1;
+        else if (JSON.stringify({ ...old, id: "" }) !== JSON.stringify({ ...rec, id: "" })) changed += 1;
+        else unchanged += 1;
+      }
+      const removed = [...oldByName.keys()].filter((n) => !newByName.has(n)).length;
+      diffLine = ` This replaces the current published version (${existingBatchFile.data.records.length} profiles): ${added} new, ${changed} changed, ${unchanged} unchanged, ${removed} removed.`;
+    } else {
+      diffLine = " This will be a new batch file.";
+    }
+
+    previewSummary.textContent = `${validRecords.length} valid profile${validRecords.length === 1 ? "" : "s"} ready to publish` +
+      (invalidCount ? `, ${invalidCount} row${invalidCount === 1 ? "" : "s"} skipped (see below).` : ".") +
+      diffLine;
+
+    previewCards.innerHTML = validRecords.map(renderPreviewCard).join("");
+  }
+
+  function renderPreviewCard(r: InterviewRecord): string {
+    const badges = [
+      r.writtenScore !== undefined ? `<span class="rounded-full bg-tint-blue px-3 py-1 text-xs font-semibold text-ink-800">Written: ${r.writtenScore}</span>` : "",
+      r.preInterviewScore !== undefined ? `<span class="rounded-full bg-tint-blue px-3 py-1 text-xs font-semibold text-ink-800">Pre-interview: ${r.preInterviewScore}</span>` : "",
+      r.interviewDifficulty !== undefined ? `<span class="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">Difficulty: ${r.interviewDifficulty}/5</span>` : "",
+    ].join("");
+    const quickFacts = [r.ugCollege, r.gradStream, r.workExBackground].filter(Boolean).join(" · ");
+    return `
+      <article class="rounded-2xl border border-ink-100 bg-white p-5 shadow-sm">
+        <div class="flex flex-wrap items-start justify-between gap-2">
+          <div>
+            <h3 class="font-display text-base font-semibold text-ink-900">${escapeHtml(r.name)}</h3>
+            ${quickFacts ? `<p class="mt-1 text-sm text-ink-500">${escapeHtml(quickFacts)}</p>` : ""}
+          </div>
+          <div class="flex flex-wrap gap-2">${badges}</div>
+        </div>
+      </article>
+    `;
+  }
+
+  // ---------------------------------------------------------------------
+  // Publish
+  // ---------------------------------------------------------------------
+  publishBtn.addEventListener("click", async () => {
+    if (!config) return;
+    hideError(publishError);
+    publishBtn.disabled = true;
+
+    try {
+      const batchDoc: Batch = {
+        batch: selectedBatch,
+        label: existingBatchFile?.data.label ?? `Batch ${selectedBatch}`,
+        records: validRecords,
+      };
+      const parsed = batchSchema.safeParse(batchDoc);
+      if (!parsed.success) throw new Error("Parsed data failed final validation — check the mapping.");
+
+      publishStatus.textContent = "Creating branch…";
+      const baseSha = await gh.getBranchSha(config, defaultBranch);
+      const branchName = `cms/${selectedBatch}-${Date.now()}`;
+      await gh.createBranch(config, branchName, baseSha);
+
+      publishStatus.textContent = "Committing data…";
+      await gh.putJsonFile(
+        config,
+        `src/data/batches/${selectedBatch}.json`,
+        branchName,
+        parsed.data,
+        `Publish ${selectedBatch} via committee admin (${validRecords.length} profiles)`,
+        existingBatchFile?.sha
+      );
+
+      publishStatus.textContent = "Opening pull request…";
+      const pr = await gh.createPullRequest(config, {
+        title: `Publish ${selectedBatch} interview experiences (${validRecords.length} profiles)`,
+        head: branchName,
+        base: defaultBranch,
+        body: `Published via the committee admin tool at /admin/.\n\n${validRecords.length} profiles${invalidCount ? `, ${invalidCount} rows skipped for validation errors` : ""}.`,
+      });
+
+      prLink.href = pr.url;
+      stepDone.hidden = false;
+      stepDone.scrollIntoView({ behavior: "smooth", block: "start" });
+      publishStatus.textContent = "";
+    } catch (err) {
+      showError(publishError, `Publish failed: ${(err as Error).message}`);
+      publishStatus.textContent = "";
+    } finally {
+      publishBtn.disabled = false;
+    }
+  });
+</script>

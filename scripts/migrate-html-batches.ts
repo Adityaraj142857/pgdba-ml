@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import * as cheerio from "cheerio";
 import { batchSchema, type InterviewRecord } from "../src/lib/schema.ts";
 import { resolveSchemaField, normalizeHeader } from "../src/lib/header-aliases.ts";
+import { coerceFieldValue, tidyName } from "../src/lib/record-fields.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -27,40 +28,18 @@ function newRawRecord(): RawRecord {
   return { questions: {} };
 }
 
-/** Some respondents typed their name in ALL CAPS (or all lowercase) on the Google Form.
- *  Title-cases those for a consistent look; leaves already-mixed-case names untouched so we
- *  don't mangle intentional capitals (initials, "PP", etc.). */
-function tidyName(name: string): string {
-  const letters = name.replace(/[^a-zA-Z]/g, "");
-  const isShouting = letters.length > 1 && (letters === letters.toUpperCase() || letters === letters.toLowerCase());
-  if (!isShouting) return name;
-  return name
-    .toLowerCase()
-    .replace(/(^|[\s.'-])([a-z])/g, (_, sep, ch) => sep + ch.toUpperCase());
-}
-
-/** Sets a value on a raw record by schema field path ("name" or "questions.mathStats"). */
+/** Sets a value on a raw record by schema field path ("name" or "questions.mathStats"),
+ *  delegating type coercion (numbers, blank/zero handling, year cleanup) to the same shared
+ *  helper the admin CMS uses when parsing an uploaded Excel file. */
 function setField(rec: RawRecord, field: string, value: string) {
-  let v = value.trim();
-  if (!v) return;
-  // Excel-derived years sometimes carry a float artifact ("2022.0") into the source HTML.
-  if ((field === "gradYear" || field === "pgYear") && /^\d{4}\.0$/.test(v)) {
-    v = v.slice(0, 4);
-  }
+  const coerced = coerceFieldValue(field, value);
+  if (coerced === undefined) return;
   if (field.startsWith("questions.")) {
     const key = field.slice("questions.".length) as keyof InterviewRecord["questions"];
-    (rec.questions as any)[key] = v;
+    (rec.questions as any)[key] = coerced;
     return;
   }
-  if (field === "writtenScore" || field === "preInterviewScore" || field === "interviewDifficulty" || field === "writtenDifficulty") {
-    const n = Number(v.replace(/[^\d.]/g, ""));
-    if (Number.isNaN(n)) return;
-    // A literal 0 on any of these scales means "left blank" in practice, not a real score/rating.
-    if (n === 0) return;
-    (rec as any)[field] = n;
-    return;
-  }
-  (rec as any)[field] = v;
+  (rec as any)[field] = coerced;
 }
 
 /** Extracts a cell's text, turning <li>/<br> boundaries into newlines so list items don't
