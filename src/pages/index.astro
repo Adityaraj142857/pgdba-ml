@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import StatStrip from "../components/StatStrip.astro";
 import { getSiteStats, getLatestBatch } from "../lib/batches";
+import { withBase } from "../lib/url";
 
 const stats = await getSiteStats();
 const latest = await getLatestBatch();
@@ -11,7 +12,7 @@ const latest = await getLatestBatch();
   <!-- Hero -->
   <section class="relative overflow-hidden border-b border-ink-100 bg-gradient-to-b from-brand-50 via-paper to-paper">
     <div class="relative mx-auto max-w-4xl px-5 py-20 text-center sm:py-28">
-      <img src="/images/logo.png" alt="PGDBA logo" class="mx-auto mb-6 h-20 w-20" width="80" height="80" />
+      <img src={withBase("/images/logo.png")} alt="PGDBA logo" class="mx-auto mb-6 h-20 w-20" width="80" height="80" />
       <h1 class="font-display text-4xl font-semibold tracking-tight text-ink-900 sm:text-5xl">
         Post Graduate Diploma in <span class="text-brand-700">Business Analytics</span>
       </h1>
@@ -21,13 +22,13 @@ const latest = await getLatestBatch();
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
         <a
-          href="/experiences/"
+          href={withBase("/experiences/")}
           class="rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
         >
           Read Interview Experiences
         </a>
         <a
-          href={`/experiences/${latest.data.batch}/`}
+          href={withBase(`/experiences/${latest.data.batch}/`)}
           class="rounded-full border border-ink-200 bg-white px-6 py-3 text-sm font-semibold text-ink-800 transition-colors hover:border-brand-300 hover:text-brand-700"
         >
           Latest batch: {latest.data.batch}
@@ -39,7 +40,7 @@ const latest = await getLatestBatch();
   <!-- Institutes banner -->
   <section class="border-b border-ink-100 bg-ink-900">
     <img
-      src="/images/3_institute_logo.jpg"
+      src={withBase("/images/3_institute_logo.jpg")}
       alt="Indian Statistical Institute Kolkata, Indian Institute of Management Calcutta, and Indian Institute of Technology Kharagpur"
       class="mx-auto max-h-64 w-full object-contain"
     />
@@ -94,7 +95,7 @@ const latest = await getLatestBatch();
         2015-17 through {latest.data.batch} is archived here, organized and searchable by year,
         so future applicants can prepare with a clear sense of what to expect.
       </p>
-      <a href="/experiences/" class="mt-6 inline-block font-semibold text-brand-700 hover:text-brand-800">
+      <a href={withBase("/experiences/")} class="mt-6 inline-block font-semibold text-brand-700 hover:text-brand-800">
         Browse all interview experiences →
       </a>
     </div>

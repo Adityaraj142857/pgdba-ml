@@ -1,5 +1,6 @@
 ---
 import type { BatchEntry } from "../lib/batches";
+import { withBase } from "../lib/url";
 
 interface Props {
   batches: BatchEntry[];
@@ -14,7 +15,7 @@ const { batches, activeBatch } = Astro.props;
       {batches.map((b) => (
         <li>
           <a
-            href={`/experiences/${b.data.batch}/`}
+            href={withBase(`/experiences/${b.data.batch}/`)}
             class:list={[
               "block whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors",
               b.data.batch === activeBatch

@@ -1,6 +1,7 @@
 ---
 import { getLatestBatch } from "../../lib/batches";
+import { withBase } from "../../lib/url";
 
 const latest = await getLatestBatch();
-return Astro.redirect(`/experiences/${latest.data.batch}/`);
+return Astro.redirect(withBase(`/experiences/${latest.data.batch}/`));
 ---
