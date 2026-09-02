@@ -30,10 +30,19 @@ const socials = [
     cta: "Subscribe on YouTube",
     icon: "youtube",
   },
+  {
+    name: "AINA",
+    handle: "ainamagazine.com",
+    url: "https://ainamagazine.com/",
+    description:
+      "The AI & Analytics Magazine — run by PGDBA batchmates, covering AI, data, and analytics.",
+    cta: "Read AINA Magazine",
+    icon: "magazine",
+  },
 ] as const;
 ---
 
-<BaseLayout title="Connect" description="Follow PGDBA's official LinkedIn, Instagram, and YouTube channels for updates, campus life, and info sessions.">
+<BaseLayout title="Connect" description="Follow PGDBA's official LinkedIn, Instagram, and YouTube channels, and AINA — the batch's own AI & Analytics magazine.">
   <!-- Hero -->
   <section class="relative overflow-hidden bg-gradient-to-b from-noir-900 via-noir-900 to-noir-950">
     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(171,55,34,0.18),_transparent_60%)]"></div>
@@ -43,7 +52,7 @@ const socials = [
       </h1>
       <p class="mx-auto mt-5 max-w-xl text-balance text-lg text-noir-200">
         This site archives interview experiences. For everything else — announcements, campus
-        life, placements — follow PGDBA's official channels below.
+        life, placements, and AINA magazine — follow PGDBA's channels below.
       </p>
     </div>
   </section>
@@ -71,7 +80,7 @@ const socials = [
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex shrink-0 items-center gap-2 rounded-full bg-noir-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-noir-800"
+              class="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
             >
               {s.cta}
               <SocialIcon name={s.icon} class="h-4 w-4" />
