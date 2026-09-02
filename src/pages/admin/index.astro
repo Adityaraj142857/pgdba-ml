@@ -339,7 +339,7 @@ const batchSummaries = batches.map((b) => ({
   function populateNewBatchYearSelect() {
     const currentYear = new Date().getFullYear();
     const startYear = currentYear - 1;
-    const endYear = currentYear + 5;
+    const endYear = 2099;
     newBatchYearSelect.innerHTML = "";
     let defaultYear: number | null = null;
     for (let year = startYear; year <= endYear; year++) {
