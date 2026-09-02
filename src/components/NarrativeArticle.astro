@@ -1,0 +1,28 @@
+---
+import type { InterviewRecord } from "../lib/schema";
+
+interface Props {
+  record: InterviewRecord;
+}
+const { record: r } = Astro.props;
+---
+
+<article class="rounded-2xl border border-ink-100 bg-white p-6 shadow-sm sm:p-8">
+  <h3 class="font-display text-xl font-semibold text-ink-900">{r.name}</h3>
+  {r.bio && <p class="mt-1 text-sm italic text-ink-500">{r.bio}</p>}
+  {r.linkUrl && (
+    <a
+      href={r.linkUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-700 hover:text-brand-800"
+    >
+      View profile ↗
+    </a>
+  )}
+  {r.story && (
+    <div class="prose prose-ink mt-4 max-w-none whitespace-pre-line text-[15px] leading-relaxed text-ink-800">
+      {r.story}
+    </div>
+  )}
+</article>

@@ -1,0 +1,32 @@
+---
+import type { BatchEntry } from "../lib/batches";
+
+interface Props {
+  batches: BatchEntry[];
+  activeBatch: string;
+}
+const { batches, activeBatch } = Astro.props;
+---
+
+<nav aria-label="Choose batch year" class="border-b border-ink-100 bg-white">
+  <div class="mx-auto max-w-6xl overflow-x-auto px-5">
+    <ul class="flex min-w-max gap-1 py-3">
+      {batches.map((b) => (
+        <li>
+          <a
+            href={`/experiences/${b.data.batch}/`}
+            class:list={[
+              "block whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors",
+              b.data.batch === activeBatch
+                ? "bg-brand-600 text-white shadow-sm"
+                : "text-ink-600 hover:bg-brand-50 hover:text-brand-700",
+            ]}
+            aria-current={b.data.batch === activeBatch ? "page" : undefined}
+          >
+            {b.data.batch}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

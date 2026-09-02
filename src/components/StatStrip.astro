@@ -1,0 +1,19 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+interface Props {
+  stats: Stat[];
+}
+const { stats } = Astro.props;
+---
+
+<dl class="grid grid-cols-2 gap-6 sm:grid-cols-4">
+  {stats.map((stat) => (
+    <div class="rounded-xl border border-ink-100 bg-white px-4 py-5 text-center shadow-sm">
+      <dd class="font-display text-2xl font-semibold whitespace-nowrap text-brand-700 sm:text-3xl">{stat.value}</dd>
+      <dt class="mt-1 text-xs font-medium uppercase tracking-wide text-ink-500">{stat.label}</dt>
+    </div>
+  ))}
+</dl>

@@ -1,0 +1,22 @@
+Migration report (2026-09-02T09:58:50.391Z)
+
+19 unique unmapped header(s) across all batches:
+  - [2019-21] unmapped header: "Any other interaction post-interview"
+  - [2019-21] unmapped header: "Designation"
+  - [2019-21] unmapped header: "Interview Location city"
+  - [2019-21] unmapped header: "Is the interview stressful?"
+  - [2019-21] unmapped header: "Tips to fill Application Form"
+  - [2020-22] unmapped header: "Any other interaction post the interview process"
+  - [2020-22] unmapped header: "Any other interaction post the interview process?"
+  - [2020-22] unmapped header: "Application Form"
+  - [2020-22] unmapped header: "Designation"
+  - [2020-22] unmapped header: "Did you feel that your interview was a stress interview?"
+  - [2020-22] unmapped header: "How long was your interview? (in minutes)"
+  - [2020-22] unmapped header: "How was your overall interview experience?"
+  - [2020-22] unmapped header: "Interview duration (in minutes)"
+  - [2020-22] unmapped header: "Overall Interview Experience"
+  - [2020-22] unmapped header: "Tips to fill Application Form"
+  - [2020-22] unmapped header: "Written Exam"
+  - [2021-23] unmapped header: "Designation in latest organization"
+  - [2022-24] unmapped header: "PGDBA Interview Score (out of 40)"
+  - [2025-27] unmapped header: "Master's Degree"

@@ -1,0 +1,24 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink-100 bg-white">
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex items-center gap-3">
+      <img src="/images/logo.png" alt="PGDBA logo" class="h-8 w-8" width="32" height="32" />
+      <div>
+        <p class="font-display text-sm font-semibold text-ink-900">PGDBA</p>
+        <p class="text-xs text-ink-500">ISI Kolkata &middot; IIM Calcutta &middot; IIT Kharagpur</p>
+      </div>
+    </div>
+
+    <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-500">
+      <a href="/" class="hover:text-brand-700">About</a>
+      <a href="/experiences/" class="hover:text-brand-700">Interview Experiences</a>
+      <a href="/admin/" class="hover:text-brand-700">Committee</a>
+    </nav>
+  </div>
+  <div class="border-t border-ink-100 px-5 py-4 text-center text-xs text-ink-500">
+    &copy; {year} PGDBA. An alumni-run resource for aspirants — not an official ISI/IIM Calcutta/IIT Kharagpur page.
+  </div>
+</footer>

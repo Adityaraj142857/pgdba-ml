@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BatchSwitcher from "../../components/BatchSwitcher.astro";
+import StudentCard from "../../components/StudentCard.astro";
+import NarrativeArticle from "../../components/NarrativeArticle.astro";
+import { getAllBatchesSorted } from "../../lib/batches";
+
+export async function getStaticPaths() {
+  const batches = await getAllBatchesSorted();
+  return batches.map((b) => ({
+    params: { batch: b.data.batch },
+    props: { batches, current: b },
+  }));
+}
+
+const { batches, current } = Astro.props;
+const { label, records } = current.data;
+const isNarrative = records.length > 0 && records.every((r) => r.sourceFormat === "narrative");
+
+const numericAvg = (values: number[]) =>
+  values.length ? (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1) : undefined;
+
+const writtenScores = records.map((r) => r.writtenScore).filter((v): v is number => v !== undefined);
+const avgWritten = numericAvg(writtenScores);
+---
+
+<BaseLayout title={`${label} · Interview Experiences`}>
+  <BatchSwitcher batches={batches} activeBatch={current.data.batch} />
+
+  <header class="border-b border-ink-100 bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-8">
+      <h1 class="font-display text-3xl font-semibold text-ink-900">{label}</h1>
+      <p class="mt-2 text-sm text-ink-500">
+        {records.length} interview experience{records.length === 1 ? "" : "s"}
+        {avgWritten && <> · avg. written score {avgWritten}</>}
+      </p>
+
+      {!isNarrative && records.length > 0 && (
+        <div class="mt-5 max-w-sm">
+          <label for="search" class="sr-only">Search this batch</label>
+          <input
+            id="search"
+            type="search"
+            placeholder="Search by name, college, or stream…"
+            class="w-full rounded-full border border-ink-200 bg-paper px-4 py-2 text-sm text-ink-800 placeholder:text-ink-500/70 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          />
+        </div>
+      )}
+    </div>
+  </header>
+
+  <section class="mx-auto max-w-6xl px-5 py-10">
+    {records.length === 0 && (
+      <p class="text-center text-ink-500">No records found for this batch yet.</p>
+    )}
+
+    {isNarrative ? (
+      <div class="mx-auto flex max-w-3xl flex-col gap-6">
+        {records.map((r) => <NarrativeArticle record={r} />)}
+      </div>
+    ) : (
+      <div id="card-grid" class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        {records.map((r) => (
+          <div
+            class="experience-card"
+            data-search={`${r.name} ${r.ugCollege ?? ""} ${r.gradStream ?? ""} ${r.workExBackground ?? ""}`.toLowerCase()}
+          >
+            <StudentCard record={r} />
+          </div>
+        ))}
+      </div>
+    )}
+
+    <p id="no-results" hidden class="py-10 text-center text-ink-500">
+      No profiles match your search.
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  const input = document.getElementById("search") as HTMLInputElement | null;
+  const cards = Array.from(document.querySelectorAll<HTMLElement>(".experience-card"));
+  const noResults = document.getElementById("no-results");
+
+  input?.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    for (const card of cards) {
+      const matches = !q || (card.dataset.search ?? "").includes(q);
+      card.hidden = !matches;
+      if (matches) visible += 1;
+    }
+    if (noResults) noResults.hidden = visible !== 0 || cards.length === 0;
+  });
+</script>

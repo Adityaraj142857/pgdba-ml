@@ -1,0 +1,6 @@
+---
+import { getLatestBatch } from "../../lib/batches";
+
+const latest = await getLatestBatch();
+return Astro.redirect(`/experiences/${latest.data.batch}/`);
+---

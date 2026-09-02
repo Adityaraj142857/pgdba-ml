@@ -1,0 +1,777 @@
+{
+  "batch": "2019-21",
+  "label": "Batch 2019-21",
+  "records": [
+    {
+      "id": "2019-21-01",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Rajat Gupta",
+      "ugCollege": "IIT Kharagpur",
+      "gradStream": "B.Tech + M.Tech (Dual) in Civil Engineering",
+      "workExMonths": "Experienced (12)",
+      "workExBackground": "Oil and Gas",
+      "organizations": "Oceanergy",
+      "resourcesWritten": "https://www.exambazaar.com/blogpost/pgdba-course-exam",
+      "resourcesInterview": "https://www.exambazaar.com/blogpost/pgdba-course-exam",
+      "questions": {
+        "mathStats": "https://qr.ae/TWILlI",
+        "coding": "None",
+        "gk": "No"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-02",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Anadi Vashist",
+      "ugCollege": "Hindu College, University of Delhi",
+      "gradStream": "M.Sc. Statistics",
+      "workExMonths": "Experienced (23)",
+      "workExBackground": "Analytics/Consulting",
+      "organizations": "EXL Services Private Limited",
+      "resourcesWritten": "Revise Mathematics of 11th and 12th. Start with basics, Ncert and RD Sharma for concepts and formulae.",
+      "resourcesInterview": "Revise Graduation Courses relevant to the course.",
+      "questions": {
+        "mathStats": "1)MLE of Uniform distribution. X~U(0, theta) and then X~U(-theta, theta)\n2) Hypothesis testing: How to formulate hypothesis? Composite null and alternate hypothesis testing?\n3) Method of Moments Estimation\n4)Linear Regression: OLS estimation and how to obtain normal equations?",
+        "coding": "Statistics",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-03",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Shubham Sureka",
+      "ugCollege": "BIT Mesra",
+      "gradStream": "BE Information Technology",
+      "workExMonths": "Experienced (36)",
+      "workExBackground": "Marketing/Advertising, Analytics/Consulting",
+      "organizations": "Olympeo Infrastructure LLP, ZS Associates, Snapdeal",
+      "resourcesWritten": "Cat series (IMS or CL for English, DI, LR and few Maths questions)\nDo prepare Maths NCERT Miscellaneous exercises. In case you feel difficulty in some topics, brush up on JEE notes.",
+      "resourcesInterview": "I read all the techniques through YouTube. I prepared my CV points pretty well and to some extent I was able to keep the discussion around that. Jb statistics be a good resource for few basics.",
+      "questions": {
+        "mathStats": "What is correlation? Draw some examples? Basic idea about regression? They made me draw some graphs of some functions. They were bit tricky, but doable.",
+        "coding": "Few questions were there about my project I did at Snapdeal. I had to explain them the project. There were questions on Joins in SQL (some random sample data and they asked me to get a result). I remember briefly the question.\nQ1: There were some tickets along with their timestamp (created time stamp). Against each row, there was a column highlighting if the ticket if closed or not. Also, another columns showcasing the time when the ticket was closed. I had to find the maximum time taken by a ticket to get closed. Same for minimum. Also, how many tickets are still not closed? All using joins.Solution: Just do a left join on the ticket id and Mark the condition as closing date greater then opening date. Then calculate the difference in the time stamps (Closing-Open). Then group by functionality can be used to get the results.The discussion on this went for around 10-15 minutesKnowledge about Left Join and Inner Join was sufficient. They also made me write sub nested sub queries. The level was not very difficult.",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-04",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Srijan Gupta",
+      "ugCollege": "Pandit Deendayal Petroleum University, Gandhinagar",
+      "gradStream": "B.Tech in Chemical Engineering",
+      "workExMonths": "Experienced (18)",
+      "workExBackground": "Manufacturing",
+      "organizations": "Defence, L&T Limited",
+      "resourcesWritten": "NCERT mathematics is a great source for fundamental mathematics, and that easily got me through 75% of the maths section. The remaining question needed an extensive deductibility of NCERT concepts. Some standard AIEEE (JEE Main) book might be helpful. Do cover calculus portion judiciously and diligently.",
+      "resourcesInterview": "TIME mock interviews were a great help. To supplement the analytics domain knowledge, linear algebra basic concepts, normal distribution fundamentals, engineering level project management or operation optimization topics like decision tree and transportation problems might come in handy.",
+      "questions": {
+        "mathStats": "I was asked to solved an integral with cubic expression in the denominator. It reduced to a fraction of linear and quadratic expressions upon partial fraction. I forgot the formula for the standard quadratic at that time, so showed the panelist the expression formed.",
+        "coding": "What is analytics? How do you relate yourself to analytics?\nWhy is analytics a buzz word these days?",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-05",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Immidisetty Anudeep",
+      "ugCollege": "IIT Kharagpur",
+      "gradStream": "Civil Engineering",
+      "workExMonths": "Experienced (12)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Wipro Ltd.",
+      "resourcesWritten": "Arun Sharma - Reading Comprehension and Logical reasoning books",
+      "resourcesInterview": "1. medium.com\n2. Probability and Statistics by WW Hines and Montgomery",
+      "questions": {
+        "mathStats": "1. Give real-life examples for Poisson Distribution. What are mean and SD of Poisson Distribution.\nAns. Accidents occurring on a road, Number of Calls arriving at a call centre. Mean = variance = λ.\n2. Where does Normal Distribution meet X-axis\nAns. At infinity. He tried to confuse me here.\n3. Properties of Normal Distribution\nAns. Bell curve, uncorrelated implies independence, 2 parameter distribution defined by its mean and sd. Generally fits most practical situations.\n4. Differentiability of abs(x)\nAns. Differentiable everywhere except 0.\n5. How do you say when a function is continuous.\nAns. When left limit = right limit = f(x) for all x.\n6. How do you say if a function is differentiable?\nAns. When left derivative = right derivative.",
+        "coding": "1. Why do you want to do PGDBA?\n2. Applications of analytics in business.\n3. How can you use analytics to develop the business of an MSME type industry",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-06",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Karthikeya R",
+      "ugCollege": "IIT Kharagpur",
+      "gradStream": "B.Tech in Agricultural and Food Engineering",
+      "workExMonths": "Experienced (11)",
+      "workExBackground": "Analytics/Consulting",
+      "organizations": "PhonePe",
+      "resourcesWritten": "I would recommend practicing from Previous year JEE Mains Questions (Arihant) [only intersection topics], any popular test series (to improve speed).",
+      "resourcesInterview": "Questions on Matrix Linear Transformations, Mathematical Induction, Applications of Analytics in Payments Industry followed by Why PGDBA, General Awareness Questions, etc.",
+      "questions": {
+        "mathStats": "Asked to Prove Pythagoras theorem [Draw the perpendicular from the right vertex to hypotenuse and use Similar triangles theorem]",
+        "coding": "Hypothesis Testing, p-value etc.",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-07",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Kolli Parasuram",
+      "ugCollege": "NIT Bhopal",
+      "gradStream": "B.tech in Electronics and Communication",
+      "workExMonths": "Experienced (33)",
+      "workExBackground": "Telecommunication",
+      "organizations": "Bharti Airtel",
+      "resourcesWritten": "I did not read anything specific just went through my +2 Math textbook Agarwal that to only for additional topics to CAT like Integration, Differentiation,Vectors and Matrices",
+      "resourcesInterview": "I watched 3Blue1Brown youtube videos on Linear Algebra. Can study other topics also from 3Blue1Brown channel.\nAdvanced Engineering Mathematics by Erwin Kreyszig. Very good book especially for Probability and Statistics. This is the book i followed during my interview preparation.",
+      "questions": {
+        "mathStats": "Q1. Find probability mass function of discrete random variable at one point giving its value at all other points?\nAns:- Sum of probabilities is 1. So subtracted the sum of probabilities of all other points from 1 to get required answer. This took a good amount of time for calculation and gave correct answer.\nQ2. Plot the probability mass function of above discrete random variable?\nAns:- I drawn it correctly.\nQ3. Find the probability of a continuous discrete random variable to lie between 1 and 2 giving cumulative distribution function (cdf)?\nAns:- If cfd=f(x) then integrate f(x)dx with between lower limit 1 and higher limit 2. I did not solve it completely i drawn the graph and shaded area and wrote the integration form. Interviewer seen the equation and said it correct and not needed to solve completely.\nQ4. Find expected value of expected value of discrete random variable in first question?\nAns:- summation of xf(x) from x=-infinity to x=infinity where f(x) is pmf in terms of random variable x. I answered it correctly.\nQ5. Find the expected value for the continuous random variable in third question?\nAns:- Integration of xf(x) from x=-infinity to x=infinity where f(x) is cdf I answered it correctly.\nThen he asked if i know about situations of two random variables. I said i can do but only to basic level. Interviewer said he will ask basic level questions only and asked.\nQ6. Joint pdf of two random variable X and Y is given and asked to find marginal cdf of y where 0<x<y<1.\nAns:- Integrate the x from 0 to y for the joint pdf to get marginal cdf in term of y. I answered it correctly.\nQ7. Find the probability of the function now?\nAns:- We have to integrate the maginal cdf in y for its limits 0 to 1 where we get answer as 1. I got confused about the lower limit of integration here weather 0 or x. I took a bit of time in thinking and expressed doubt put x but he said it wrong then changed to 0. Sir( interviewer) later gave reason for it.\nQ8. Draw the plot of the joint pdf region?\nAns:- I drawn the region 0<x<y<1 and shaded region on XY axis correctly.",
+        "coding": "Nothing related to above topics. The panel asked me about work i do in my company. Then they asked if i know coding. I said no. Then they asked what i know in technical. I said Mathematics. Then interviewer asked what in mathematics and gave examples like statistics, probability. I said i am ok with any of the topic. Then they asked if i am comfortable with random variables. I said Yes and from that point interview started.",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-08",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Hemanthkumar E",
+      "ugCollege": "Amrita School of Engineering",
+      "gradStream": "mechanical",
+      "workExMonths": "Experienced (20)",
+      "workExBackground": "Software/IT and ITES, Analytics/Consulting",
+      "organizations": "Infosys limited",
+      "resourcesWritten": "I went through 40 year paper solved iit JEE mathematics Amit M Agarwal",
+      "resourcesInterview": "I went through ncert math book. For data science related topics, I analytics Vidya website was helpful.",
+      "questions": {
+        "mathStats": "Explain type 1 and type 2 error. What is precision and recall. What is F1 score .",
+        "coding": "Explain entropy in decision tree. Explain logistics regression.",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-09",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Sakshi Nagori",
+      "ugCollege": "IIT Madras",
+      "gradStream": "B.Tech in Naval Architecture and Ocean Engineering",
+      "workExMonths": "Experienced (11)",
+      "workExBackground": "Oil and Gas",
+      "organizations": "LnT Defence",
+      "resourcesWritten": "I solved only last years' question papers seriously and it helped. Solving the NCERTs would be of great help too",
+      "resourcesInterview": "They asked me a lot of current affairs questions like Insolvency and Bankruptcy Bill. Be prepared with your resume, work experience and educational background",
+      "questions": {
+        "mathStats": "Logical Questions on Inference: Logical Consequence of Negation of a statement",
+        "coding": "What is Linear Regression?\nHow do we ensure minimum distance between estimated and actual points (Basically wanted me to talk about RMS method)\nShowed me a graph for non-linear relationship between variables and asked me about how would i approach finding a regression of such variables.",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-10",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Murali Krishna",
+      "ugCollege": "IIT Madras",
+      "gradStream": "BTech Mechanical",
+      "workExMonths": "Experienced (23)",
+      "workExBackground": "BFSI/Finance",
+      "organizations": "Citi",
+      "resourcesWritten": "ncert (maths 11 and 12) + previous papers",
+      "resourcesInterview": "-",
+      "questions": {
+        "mathStats": "many of the question asked were based on my maths courses in my UG (linear algebra, Differential equations, calculus). The question are based on the answer u give for the last questions and related to what u have done.\nbelow are the some of the question asked:\n1. Basic idea of how different graphs look Ex; draw graph of e^(sinx) and why the graph behaves.what is min and max. how do u calculate\n2.write the differential equation of whose solution is e^(sinx) (equation can be one degree or two degree) - you can differential the equation twice and form a equation\n3. Types of the distribution (like possion,binomial...).what is mean,medain,mode .some probability question\n4. what are eigen vectors and values? How many eigen values can 3*3 matrix have?\n5. some basic question were asked on core course (Mechanical engineering)\n6. question on parabola..which country has a parabola shape?\n7. capital of Austria? ()\nsome Hr questions...tell me about this yourself? why do u want to apply for this course\n8. question of projects if ur experienced",
+        "coding": "not specifically.It will be good if you have a brief idea of what those terms are and what is the current trend.",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-11",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Bhushan Chaudhari",
+      "ugCollege": "College of Engineering Pune",
+      "gradStream": "B.Tech IT",
+      "workExMonths": "Experienced (11)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Barcalys Technology Center",
+      "resourcesWritten": "class 11-12 Ncert Maths textbooks",
+      "resourcesInterview": "-",
+      "questions": {
+        "mathStats": "1) Solving system of linear equations using matrices?\n3 equations were given i converted them in matrix form then panel asked me whether solution for this system exists then I calculated the determinant of matrix which happened to be not equal to zero hence I answered solution exists and calculated the answer by converting matrix into upper triangular matrix.2) What is rank of matrix and it's physical significance?\nNumber of independent rows in matrix . Then panel asked me relation between determinant of matrix and rank to which I answered if the rank is less than dimension of matrix then determinant will be zero and hence corresponding system of linear equation will not have unique solution.\nPhysical significance - Amount of information stored in matrix.",
+        "coding": "No Analytics questions asked",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-12",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Rohit Bajpai",
+      "ugCollege": "NMIMS",
+      "gradStream": "B-tech in Mechanical Engineering",
+      "workExMonths": "Experienced (18)",
+      "workExBackground": "Finance and sales",
+      "organizations": "Mahindra Finance",
+      "resourcesWritten": "Just go through NCERT Mathmatics textbook",
+      "resourcesInterview": "-",
+      "questions": {
+        "mathStats": "Simple derivative and linear algebra question",
+        "coding": "-",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 3
+    },
+    {
+      "id": "2019-21-13",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Deo Ashish Samanta",
+      "ugCollege": "IISER Bhopal",
+      "gradStream": "BS-MS in Mathematics",
+      "workExMonths": "Fresher",
+      "workExBackground": "-",
+      "organizations": "-",
+      "resourcesWritten": "NCERT Mathematics",
+      "resourcesInterview": "I think NCERT mathematics suffices for every thing. Practice some logical reasoning and data interpretation problems from CAT previous year's papers. You may look at CAT papers for verbal sections also but, the level of questions would be easier in PGDBA.",
+      "questions": {
+        "mathStats": "The questions were from the mathematics courses I have done.\n1) What is a complex analytic function?\n2) Check at how many points |z| is analytic?\n3) Write the Maclaurin-Laurent series for the function z*exp(-1/z)? What are poles and singularities?\n4) What is Cantor set, measure of a Cantor set, Finite intersection property, Heine Borel Theorem.",
+        "coding": "1) What is a probability space? define precisely. 2) Give an example of continuous probability distribution.\n3) What is the expectation of this distribution?\n4) Can we define a \"measure\" on some class of sets using the distribution functions?",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-14",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Subramania Bharathi",
+      "ugCollege": "IIT KHARAGPUR",
+      "gradStream": "B.Tech + M.Tech in Ocean Engineering and Naval Architecture",
+      "workExMonths": "Experienced (35)",
+      "workExBackground": "Service ( Classification society)",
+      "organizations": "Indian register of shipping",
+      "resourcesWritten": "NCERT",
+      "resourcesInterview": "Previous interview experiences from quora",
+      "questions": {
+        "mathStats": "1)Sum of any two sides of triangle is greater than the third, can we tell the same for any n sided polygon\n2)To explain few theorems in analytics ( Since I was not aware of any of those, they asked me to choose my favourite topic in Maths)\n3) I Chose probability,\na) When probability of winning a event is given. What is the probability of winning the event for the first time in your 10th attempt. (Answered correctly so continued )\nb) What is the probability of winning the event for the second time in your 10th attempt.",
+        "coding": "I was not have any prior experience related to analytics so most of the questions where about simple maths (geometry, probability etc). I was asked to explain the possibility of applying analytics in my field",
+        "gk": "No"
+      },
+      "interviewDifficulty": 3
+    },
+    {
+      "id": "2019-21-15",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Kowshik Moyya",
+      "ugCollege": "IIT Dhanbad",
+      "gradStream": "ECE",
+      "workExMonths": "Experienced (32)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Microsoft",
+      "resourcesWritten": "PGDBA previous question papers.You can find easily in the internet.",
+      "resourcesInterview": "Essence of linear algebra : https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab\nUnderstand the importance of Eigen vectors ,Eigen values",
+      "questions": {
+        "mathStats": "A professor from ISI gave a problem of linear algebra to find pattern and solve equations in an easy way.",
+        "coding": "No technical questions were asked.Questions were mostly around my work done in Microsoft and 2-3 linear algebra questions.",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-16",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Saikumar Korada",
+      "ugCollege": "IIT Madras",
+      "gradStream": "Naval architecture and Ocean Engineering",
+      "workExMonths": "Experienced (36)",
+      "workExBackground": "Manufacturing",
+      "organizations": "Mazagon Dock Shipbuilders Ltd",
+      "resourcesWritten": "Check the previous papers online.",
+      "resourcesInterview": "I personally prepared basic statistics and probability but my panel hasn't asked me any questions about it.\nThey have asked about my work experience and concepts involved in my bachelors. It was a short interview to test my conceptual understanding and seriousness about course",
+      "questions": {
+        "mathStats": "Easy basic maths questions",
+        "coding": "No questions about Analytics",
+        "gk": "No"
+      },
+      "interviewDifficulty": 3
+    },
+    {
+      "id": "2019-21-17",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Suman Basak",
+      "ugCollege": "Jadavpur University",
+      "gradStream": "BE in Mechanical Engineering",
+      "workExMonths": "Experienced (24)",
+      "workExBackground": "Manufacturing",
+      "organizations": "Tata Motors Ltd.",
+      "resourcesWritten": "1. Solve thoroughly ISI Tomato book for maths part. Pdf is available online. And any IIT-JEE maths book, you can refer.\n \n2. For Verbal, DI & LR any standard CAT practice book will suffice.\nNote: As PGDBA is getting highly competitive with each passing year, make sure you practice thoroughly and get as much marks in written exam as possible.",
+      "resourcesInterview": "Though interviews are highly subjective and no amount of preparation would be good enough, you can refer interview experiences of previous & current batches. They usually test your mathematical.and analytical mindset. Questions from linear algebra, basic programming and probability were asked previously in the interview. Prepare them well.",
+      "questions": {
+        "mathStats": "I have one course on Optimisation during my MTech. So mathematics questions were mostly around that topic.\n \nQuestion: (Simple Optimisation problem) You have a wire of constant length (say l). If you bend the wire to make a rectangle, what would be the maximum enclosed area?\nAnswer: It would be a square in order to have maximum enclosed area. Using calculus, it can be easily proved (That's what I did during interview)\nThen series of questions linked to the above question like how is this maximum, why not minimum and things like that.\nQuestion: How to solve non-linear optimisation problem with multiple inequality constraints?\nAnswer: Maybe using Lagrange's multipliers method",
+        "coding": "I was not asked any technical question related to Analytics/ML/DS, as I don't have analytics background. But they asked about my motivation towards this field.",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-18",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Aditya Gadepalli",
+      "ugCollege": "BITS Pilani",
+      "gradStream": "BE (Hons) Mechanical Engineering",
+      "workExMonths": "Experienced (10)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Capgemini",
+      "resourcesWritten": "-",
+      "resourcesInterview": "linkedin",
+      "questions": {
+        "mathStats": "None",
+        "coding": "What is the difference between regression and curve fitting?",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-19",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Sugandha Ranjan",
+      "ugCollege": "NIT Patna",
+      "gradStream": "B. Tech. Computer Science",
+      "workExMonths": "Experienced (30)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "UnitedHealth group",
+      "resourcesWritten": "IMS PGDBA short term course might be helpful as it has the topics in brief. One can refer to the ncert books or other relevant books in order to brush up plus two maths concepts.",
+      "resourcesInterview": "I per se did not refer to any website or resources. Reading past experiences on quora was a major help. One should practice all the questions one can think about before going for the interview as it was a stressed one for me.",
+      "questions": {
+        "mathStats": "The first question was about to plot mod(sin x) which overlapped with the next question about integration. I cannot recall the exact question but it had something to do with replacement and transformation of algebraic expression using trigonometric identities. Next question was on radius of curvature which was mentioned in my b.tech project report. They asked me how to compute the radius of curvature and its physical significance and intuition.",
+        "coding": "The technical questions were focussed on the following areas:\nOn my work ex - project in UHG where I worked on extracting the data from the file on demographic information and drugs and maintaining the database. The panel asked how the file was read. How the patterns were identified to extract requisite info given the file was xml. How could one have used statistical tools to obtain this.\nOn my b.tech. project - it was based on machine learning, classification. To identify if a devnagri script is a text or a non-text. The questions were on feature generation and what smoothening and other techniques meant. How the data was collected.",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-20",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Vineet Kumar",
+      "ugCollege": "Jadavpur University",
+      "gradStream": "B.E. in Computer Sc. & Engg.",
+      "workExMonths": "Fresher",
+      "workExBackground": "-",
+      "organizations": "-",
+      "resourcesWritten": "I used my old TMH Maths book from JEE days. Almost no preparation of Verbal and RC. If you are adept at reading novels then I don't think you need any preparation. If you have somewhat good maths background you can warp up quant section in almost 80 minute. https://www.youtube.com/channel/UCNn75PJi2J5OmZGuLCZGJPg this channel has good math review tutorials to brush up co-ordinate geometry.\nKey suggestions: Study probability & statistics. Preferably from ocw mit 6.041. Revise all the math courses of your engineering curriculum.",
+      "questions": {
+        "mathStats": "The number of one to one and onto functions between two sets of cardinality x and y, example of a continuous but nondifferentiable function and explain why such thing happens from first principle (I think they were looking for \\epsilon \\delta approach), prove Bayes theorem.",
+        "coding": "They asked for a favourite subject. I told them Networks, Algorithms, Graphs.\nStarted with Networks-- Tell about OSI/TCP IP Model. Various Routing algorithms you know. Explain Dijkstra's. Any other Routing Algo -- OSPF, MSTs. Euler Circuits, Hamiltonians.\nThen a discussion on past projects and internships, BTP on NLP -- what is NMF why it is important, Why apache-spark not Hadoop (from internship).",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-21",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Adarsh Patankar",
+      "ugCollege": "IIT BHU",
+      "gradStream": "B.Tech in Mechanical Engineering",
+      "workExMonths": "Experienced (10)",
+      "workExBackground": "Oil and Gas",
+      "organizations": "Indian Oil Corp Ltd.",
+      "resourcesWritten": "Revisit class 11th,12th mathematics, specifically calculus.\nPrevious years papers are must.",
+      "resourcesInterview": "Go through last year's interview experiences.\nPrepare your past projects/internships/work experience in depth. (Specifically if related to Stats/Analytics)",
+      "questions": {
+        "mathStats": "I was asked to form appropriate null and alternative hypothesis about the next day's stock price and clearly state the assumptions that I made about the variables. Basic concepts related to hypothesis testing was checked. Also questions similar to why you assumed X variable will follow Y probability distribution; what distribution will difference of these two variables likely to follow were asked.",
+        "coding": "I was asked to tell various time series forecasting techniques that I have used for stock price forecasting.",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-22",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Anurag Malakar",
+      "ugCollege": "IIEST Shibpur",
+      "gradStream": "B.E in Mechancal Engineering",
+      "workExMonths": "Experienced (22)",
+      "workExBackground": "Marketing/Advertising",
+      "organizations": "Maruti Suzuki India Limited",
+      "resourcesWritten": "https://brilliant.org/ : This is a great website to practice Maths questions. Most of the concepts covered in the exam is available here.\n \nhttps://www.youtube.com/playlist?list=PLJicmE8fK0EiFRt1Hm5a_7SJFaikIFW30 : Good place to learn how to think logically. Helps in the DI-LR section.",
+      "resourcesInterview": "Read the newspaper editorials thoroughly.\nKnow about your place of work/undergraduate institute in detail.\nHave an idea of what PGDBA is all about, and what is your motivation behind applying for this course.",
+      "questions": {
+        "mathStats": "What is the probability that the digits of a randomly selected three-digit number will be in ascending order from left to right (without repetitions)?\n \nAnswer: 0 can't be a part of the number. So, there are 9 numbers to choose from. When you have selected three digits out of 9, there are 6 permutations possible, out of which only in 1 will the digits be in ascending order from left to right.\nSo, total number of desired 3-digit numbers = 9C3\nTotal number of 3-digit numbers = 9*10*10\nProbability = (9C3)/900",
+        "coding": "As I didn't have any Analytics Experience and my background was Mechanical Engineering, no technical questions pertaining to the field of analytics was asked.",
+        "gk": "No"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-23",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Ankit Khairkar",
+      "ugCollege": "NIT Trichy",
+      "gradStream": "Instrumentation and Control Engineering",
+      "workExMonths": "Experienced (35)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Citicorp services India pvt ltd",
+      "questions": {
+        "mathStats": "I was asked to solve some basic mathematical equations related to logarithms and indices. Statistics questions were based on basic distributions.",
+        "coding": "-",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-24",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Kunal Manchanda",
+      "ugCollege": "BITS Pilani",
+      "gradStream": "B.E. Mechanical Engineering",
+      "workExMonths": "Experienced (33)",
+      "workExBackground": "Analytics/Consulting",
+      "organizations": "ZS Associates",
+      "resourcesWritten": "NCERT for Maths, CAT material for DI/LR and Verbal and previous year question paper should be enough",
+      "resourcesInterview": "Case in Point has a very good chapter on interviews, it's not applicable completely but you can use it as a starting point for your interview prep.",
+      "questions": {
+        "mathStats": "1. I was asked to write the equation of normal and binomial distribution, (I struggled a bit on writing the equation of normal distribution but they moved on saying that they don't expect us to remember the entire equation but idea should suffice)\n2. I was given a probability density function and asked to calculate expected value (It was a simple equation which required very basic concept of expected value)",
+        "coding": "A basic question on logistic regression was asked (I had mentioned it as part of the project I had worked on during job)",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-25",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Arnab Das",
+      "ugCollege": "Jadavpur University",
+      "gradStream": "B.E in Electrical Engineering",
+      "workExMonths": "Experienced (22)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "PwC",
+      "resourcesWritten": "Past years papers and +2 maths book",
+      "resourcesInterview": "Basics of maths,statistics and analytics.Maybe algorithms if you have a background.",
+      "questions": {
+        "mathStats": "-",
+        "coding": "Algorithm",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-26",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Piyush Raj Gupta",
+      "ugCollege": "IIT Kanpur",
+      "gradStream": "Chemical engineering",
+      "workExMonths": "Experienced (11)",
+      "workExBackground": "Analytics/Consulting",
+      "organizations": "Loylty Rewardz Management Pvt. Ltd.",
+      "resourcesWritten": "https://www.youtube.com/channel/UC4Ko_X8HKNi19Nn_zV59jVg",
+      "resourcesInterview": "-",
+      "questions": {
+        "mathStats": "Numerical methods for computations, Fibonacci Series, Golden Ratio",
+        "coding": "What was your day-to-day job? Tell us a use-case where you used any data manipulation(and some cross-questions from the use case that was discussed).",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-27",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "A V SatyaSai",
+      "ugCollege": "SASTRA UNIVERSITY",
+      "gradStream": "B. Tech in Electrical and Electronics Engineering",
+      "workExMonths": "Experienced (35)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "TCS",
+      "resourcesWritten": "CBSE 11 and 12 textbook and Arihant books can be used for reference",
+      "resourcesInterview": "For Maths, u can revise basics in CBSE 11 and 12 textbooks and prepare some basics of statistics, random variables, and distributions and quickly skim gkduniya for current affairs",
+      "questions": {
+        "mathStats": "Questions on Newton-Raphson & Simpsons rule & trapezoidal rule methods for numerical integration , double integrals and area under curve ,random variables & CDF, permutations & combinations",
+        "coding": "Not completely technical, they have asked about descriptive analytics, predictive, prescriptive analytics and real-life applications of these analytics",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-28",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Subhasis Panda",
+      "ugCollege": "IIT Bombay",
+      "gradStream": "B.Tech in Civil Engineering",
+      "workExMonths": "Experienced (24)",
+      "workExBackground": "Analytics/Consulting",
+      "organizations": "TATA Strategic Management Group, KPMG",
+      "resourcesWritten": "I referred my IIT JEE notes which was more than enough for mathematics. For English and DI/LR, Time material for CAT would do.",
+      "resourcesInterview": "I prepared basic questions like why PGDBA, Introduce yourself. The details of the projects I had done in my job. I also tried to study basic class 11-12, engineering mathematics and statistics.",
+      "questions": {
+        "mathStats": "I was asked a question on conditional probability which was slightly tricky. I was also asked thoroughly about parameter estimation techniques such as likelihood functions and their relevance.",
+        "coding": "I was asked how analytics is used in healthcare because I had mentioned I was working in the healthcare industry in my job. There were 1-2 follow-up questions regarding the application. They made sure whether I really know the application, or it is something which is already existing, and analytics is not involved in it.\nThen, there was a case-study to apply analytics in Judiciary to fast track cases. What can be different analytical methods employed to reduce time for case completion",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-29",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Adityendra Pratap Singh",
+      "ugCollege": "NIT Delhi",
+      "gradStream": "B. Tech in Electronics and Communication Engineering",
+      "workExMonths": "Experienced (30)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Infosys Ltd",
+      "resourcesWritten": "https://1drv.ms/f/s!AsfoM0Dyqhkcg6pe-ADH4m57maAaBg",
+      "resourcesInterview": "Be confident. Have a basic idea about data science and machine learning from google",
+      "questions": {
+        "mathStats": "2 probability questions 1 comparatively easy and other hard",
+        "coding": "What is the difference between qualitative data and quantitative data?",
+        "gk": "No"
+      },
+      "interviewDifficulty": 3
+    },
+    {
+      "id": "2019-21-30",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Bhargav",
+      "ugCollege": "MGIT",
+      "gradStream": "B.Tech in Electronics and Communication Engineering",
+      "workExMonths": "Experienced (15)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "HPE",
+      "resourcesWritten": "Intermediate text books",
+      "questions": {
+        "mathStats": "1. proof of number of subsets in a set of n elements ?\nselect o element +select 1 element + select 2 element so on\n2. exp(|x|) value at lt x = + inf ,-inf and is it continuous or not",
+        "coding": "-",
+        "gk": "No"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-31",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Neha Dhookia",
+      "ugCollege": "IIT BHU",
+      "gradStream": "Metallurgy",
+      "workExMonths": "Experienced (24)",
+      "workExBackground": "Production",
+      "organizations": "Vedanta Limited",
+      "resourcesWritten": "11-12th Maths NCERT",
+      "resourcesInterview": "AIMonks",
+      "questions": {
+        "mathStats": "Proof of Bayes theorem? What is significance of this?\nFormula of normal distribution? What is normal distribution? Its characteristics then cross questions on it like what are different measures of dispersion.",
+        "coding": "How to estimate a parameter?\nName two methods of estimating a parameter.",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-32",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Jaiprita Prakash",
+      "ugCollege": "NIT Allahabad",
+      "gradStream": "B.Tech in Production & Industrial Engg.",
+      "workExMonths": "Experienced (30)",
+      "workExBackground": "Manufacturing",
+      "organizations": "Tata Motors",
+      "resourcesWritten": "Previous year papers, any class 11th-12th Mathematics book",
+      "resourcesInterview": "Last year's interview experiences, relevant topics related to course content such as basic statistics and analytics.",
+      "questions": {
+        "mathStats": "What is p-value? What is its significance? Type-1 error, Type-2 error. Normal distribution curve, pareto distribution, Control charts, control limits. What distribution would you use for big data analysis. What is the principle that states this, I answered Central Limit Theorem then they asked me to define it.\nWhat is null hypothesis? Take a real life example and show how hypothesis testing works.",
+        "coding": "-",
+        "gk": "Yes"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-33",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Amrita Anand",
+      "ugCollege": "IIT Kharagpur",
+      "gradStream": "B.Tech in Mechanical Engineering",
+      "workExMonths": "Experienced (36)",
+      "workExBackground": "Analytics/Consulting",
+      "organizations": "Reliance Jio Infocomm, Gale Partners",
+      "resourcesWritten": "RD Sharma and NCERT Maths- class 11th and 12th books.",
+      "resourcesInterview": "Revise all the topics that you prepared during your written PGDBA exams. If you have done any analytics project or you have analytics background then be more prepared and have thorough knowledge. Try to know the maths behind it. Atleast have the intuitive knowledge. Because, I observed that panelists were grilling those candidates more who had prior experience in analytics. Also, fill the interview form properly. Specially the SOP section.",
+      "questions": {
+        "mathStats": "They asked me about Hypothesis testing. Basically, what is the significance of p value, Type 1 error, Type 2 error.",
+        "coding": "I had worked on NLP projects when I was in Jio, so the panel asked me about the approach to solve document classification problem and algorithms behind it in details. For eg. LSTM, TF-IDF etc. They were mainly focussing on the mathematical details and indepth knowledge and cross questioning regarding the same.",
+        "gk": "Why do you want to opt for PGDBA course if you already have analytics background?"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-34",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Bharath Bhambore",
+      "ugCollege": "BMS College of Engineering",
+      "gradStream": "Telecommunication Engineering",
+      "workExMonths": "Experienced (58)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Oracle India",
+      "resourcesWritten": "Previous question papers, NCERT class 12 Mathematics books",
+      "resourcesInterview": "Go through Engineering Mathematics concepts learned in engineering",
+      "questions": {
+        "mathStats": "Question was somewhat on the lines of: Given a circle of some radius, how will you get an equation for a chord of the circle. I'm not very sure if this was how they formulated it.\nAns. Form a right triangle. Apply Pythagoras theorem. Differentiate partially with respect to length of perpendicular. You get a partial differential equation which is solved using one of the standard forms.",
+        "coding": "Functional questions like what factors would you consider while selecting a location for a base station.\nWhat inference can you get with ISD call data records?",
+        "gk": "Don't remember"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-35",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Jaihind Sawant",
+      "ugCollege": "MNNIT ALLAHABAD",
+      "gradStream": "Marketing and Finance",
+      "workExMonths": "Fresher",
+      "workExBackground": "-",
+      "organizations": "-",
+      "questions": {
+        "mathStats": "Statistics\nSPSS Software ,\nwhat is ANOVA\nhow's work Regression\nTell me dependent and independent variableMathematics\nProbability coin based Question\nMatrix based one question",
+        "coding": "No\nbut they only one question ask for me ( because of, i think i am the only one non engineering candidate in my panel, they do not focus much more in technical )responsibility of data analytics and business analytics,",
+        "gk": "which company is the first to launch SPSS software"
+      },
+      "interviewDifficulty": 3
+    },
+    {
+      "id": "2019-21-36",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Piyush Chauhan",
+      "ugCollege": "IIT BHU",
+      "gradStream": "B.Tech in Mechanical Engineering",
+      "workExMonths": "Experienced (42)",
+      "workExBackground": "Manufacturing, Oil and Gas",
+      "organizations": "ONGC, Otis Elevator Company",
+      "resourcesWritten": "Verbal and DI-LR : Any good CAT book would be fine.\nQuant : I used my old JEE prep books. (Any good book that you have previously studied would be fine)",
+      "resourcesInterview": "Lectures by prof. Gilbert Strang were really useful for me to get basics of Linear Algebra.\n \nhttps://www.youtube.com/watch?v=QVKj3LADCnA&list=PL49CF3715CB9EF31D",
+      "questions": {
+        "mathStats": "What is rank of a matrix? (Answered that it gives complete information about the solutions of system of linear equations , whether the solutions will exist or not and how many solutions will exist)\nThen they asked to further elaborate the procedure of doing so if rank is less than 'n' for a n*n matrix.",
+        "coding": "Do you know any ML algorithms? What is Logistic Regression?",
+        "gk": "What do you know about Venezuela crisis?"
+      },
+      "interviewDifficulty": 3
+    },
+    {
+      "id": "2019-21-37",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Saurabh Suman",
+      "ugCollege": "Institute of Engineering and Management",
+      "gradStream": "B.Tech in ECE",
+      "workExMonths": "Experienced (17)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "cognizant",
+      "resourcesWritten": "https://www.pagalguy.com",
+      "resourcesInterview": "https://www.pagalguy.com",
+      "questions": {
+        "mathStats": "-",
+        "coding": "some trivial question on basic data structures like linked list and map. I was asked to write programming code for Fibonacci series using dynamic programming and regression and then was asked to compare efficiency of both the codes. Apart from that some general question about my company and projects were asked.",
+        "gk": "No"
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-38",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Koustav Mitra",
+      "ugCollege": "IIEST Shibpur",
+      "gradStream": "B.E. in Civil Engineering",
+      "workExMonths": "Experienced (35)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Accenture Solutions Pvt Ltd",
+      "resourcesWritten": "More focus on Mathematics based question.",
+      "resourcesInterview": "For me lion share of the interview went on question from Probability and Probability distribution. I would recommend to prepare at least 2 topic in math. Preferably Combinatorics and Linear Algebra.",
+      "questions": {
+        "mathStats": "Quite a few questions from Probability Distribution and some derivations.",
+        "coding": "Not Much. Some questions related to implementation of analytics in Sports Management and Health Care Industry.",
+        "gk": "-"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-39",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Swadesh",
+      "ugCollege": "IIT Bombay",
+      "gradStream": "B.Tech in Chemical Engineering",
+      "workExMonths": "Experienced (23)",
+      "workExBackground": "Software/IT and ITES, BFSI/Finance",
+      "organizations": "ICICI Prudential Life Insurance",
+      "resourcesWritten": "-",
+      "resourcesInterview": "Introduction to probability and statistics for engineers and scientists Sheldon M Ross (Basic statistics, distribution functions and probability), Basic Linear Algebra (enough material on the web)",
+      "questions": {
+        "mathStats": "Most of the questions were from Linear Algebra. I was asked to define rank,bases ,eigen values, eigen vectors of matrix.They asked me to solve for eigen values and rank of a particular matrix.\nThen there was question on find the minimum and maximum of a function(which was actually difficult)",
+        "coding": "-",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    },
+    {
+      "id": "2019-21-40",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Manasvi G",
+      "ugCollege": "Indian Institute of Space Science and Technology",
+      "gradStream": "B. Tech in ECE (Avionics)",
+      "workExMonths": "Fresher",
+      "workExBackground": "-",
+      "organizations": "-",
+      "resourcesWritten": "Math is the most important section. I think 11th and 12th NCERT math would be the best place to start and brush up basics and later go on to practicing advanced math problems. Data interpretation and logical reasoning are pretty straight forward, and easy to solve. Going through last year question papers would be highly beneficial as a certain trend can be observed in the question paper pattern and one can prepare accordingly.",
+      "resourcesInterview": "I went through the interviews of previous years and made a list of topics to study and go through. But at the end of the day, I've been asked questions only based on whatever I have filled in the interview application form. I think its best to be authentic and candid throughout the interview process. Also, one should have a certain clarity as to why they want to pursue this course and how it would be beneficial to them in their future. The panelists are looking for candidates who have a keen interest and passion for business analytics. If they get a feeling that you are genuinely interested and have done your homework in this field, then the chances of converting the interview is very high.",
+      "questions": {
+        "mathStats": "Since I was a fresher from the space science industry, the first interviewer asked me as to why I wanted to shift from space to business analytics. I replied saying that my interest has shifted towards business analytics when I took electives like deep learning and optimization for operations research. I also mentioned that at the same time, my 'interest' and 'grades' in electronics subjects were gradually going down. They asked me to model an equation consisting of these two variables, and they also asked me to first answer as to which variable was independent and which was the dependent variable. Initially it took me some time to understand the question during that period I explained as to how these parameters depended on various other factors. Later when I understood their point of view, I answered that interest is an independent variable and grades are a dependent variable as the grades depend on my preparation, my attentiveness in class, etc. The first panelist seemed to be very happy with my response and handed over the baton to the second panelist, who asked me questions about my internship which was based on satellite data analysis.",
+        "coding": "What is MNF transform?\nWhy did I use MNF transform instead of a simple PCA during satellite image processing?",
+        "gk": "The third panelist asked me questions related to my hobby and was upset to see that I had written just three sentences for the given three blanks. He mentioned that everyone has written very short replies to hobbies. I described all the sentences in detail and they asked me about the different kinds of books I read, followed by questions about my other hobby which was teaching the lesser privileged kids. They asked me questions as to what I taught and which grade of students I taught. That shifted to languages when I mentioned that I sometimes teach in the native mother tongue so as to drive my point home and make the students understand more clearly. My next question was what are the official languages of Andhra Pradesh and then I was asked about languages of Kashmir. I took a wild guess, and also told them it was a guess. Everybody just laughed and a few guesses turned to be right while a few of them were wrong."
+      },
+      "interviewDifficulty": 5
+    },
+    {
+      "id": "2019-21-41",
+      "batch": "2019-21",
+      "sourceFormat": "table-kv",
+      "name": "Chetan Mehatre",
+      "ugCollege": "NMIT Bangalore",
+      "gradStream": "B.E in Electronics and Communication Engineering",
+      "workExMonths": "Experienced (9)",
+      "workExBackground": "Software/IT and ITES",
+      "organizations": "Cognizant",
+      "questions": {
+        "mathStats": "Explain Normal Distribution\nWhat is Kurtosis and Skewness?\nWhat is the integration of mod x?\nWrite the formula and explain Bayes Theorem",
+        "coding": "Difference between supervised and unsupervised learning\nAsked some questions on my graduation project",
+        "gk": "No"
+      },
+      "interviewDifficulty": 4
+    }
+  ]
+}
