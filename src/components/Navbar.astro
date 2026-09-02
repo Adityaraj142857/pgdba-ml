@@ -22,35 +22,10 @@ function isActive(href: string) {
       <span class="font-display text-lg font-semibold tracking-tight text-noir-50">PGDBA</span>
     </a>
 
-    <div class="flex items-center gap-1">
-      <button
-        id="theme-toggle"
-        type="button"
-        class="cursor-pointer rounded-md p-2 text-noir-200 hover:bg-noir-800 hover:text-noir-50"
-        aria-label="Toggle dark mode"
-      >
-        <svg class="theme-icon-moon h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-        </svg>
-        <svg class="theme-icon-sun h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36l-.7-.7M6.34 6.34l-.7-.7m12.02 0l-.7.7M6.34 17.66l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-      </button>
-
-      <input type="checkbox" id="nav-toggle" class="peer hidden" />
-      <label
-        for="nav-toggle"
-        class="cursor-pointer rounded-md p-2 text-noir-200 hover:bg-noir-800 hover:text-noir-50 md:hidden"
-        aria-label="Toggle menu"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </label>
-    </div>
+    <input type="checkbox" id="nav-toggle" class="peer hidden" />
 
     <nav
-      class="absolute left-0 right-0 top-full hidden flex-col gap-1 border-b border-noir-700 bg-noir-900 px-5 py-3 peer-checked:flex md:static md:flex md:flex-row md:gap-2 md:border-none md:bg-transparent md:p-0"
+      class="absolute left-0 right-0 top-full hidden flex-col gap-1 border-b border-noir-700 bg-noir-900 px-5 py-3 peer-checked:flex md:static md:flex md:flex-row md:items-center md:gap-2 md:border-none md:bg-transparent md:p-0"
     >
       {navItems.map((item) => (
         <a
@@ -66,6 +41,32 @@ function isActive(href: string) {
         </a>
       ))}
     </nav>
+
+    <div class="flex items-center gap-1">
+      <button
+        id="theme-toggle"
+        type="button"
+        class="cursor-pointer rounded-md p-2 text-noir-200 hover:bg-noir-800 hover:text-noir-50"
+        aria-label="Toggle dark mode"
+      >
+        <svg class="theme-icon-moon h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+        </svg>
+        <svg class="theme-icon-sun h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36l-.7-.7M6.34 6.34l-.7-.7m12.02 0l-.7.7M6.34 17.66l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </button>
+
+      <label
+        for="nav-toggle"
+        class="cursor-pointer rounded-md p-2 text-noir-200 hover:bg-noir-800 hover:text-noir-50 md:hidden"
+        aria-label="Toggle menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+    </div>
   </div>
 </header>
 
